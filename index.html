@@ -6,256 +6,287 @@
   <meta name="theme-color" content="#0A0B0E">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0B0E'/%3E%3Crect x='9' y='9' width='14' height='14' rx='4' fill='%23E8FF4D'/%3E%3C/svg%3E">
 
-  <title>Ярослав (ferokuk) — высоконагруженный backend на Python</title>
-  <meta name="description" content="Python backend · финтех и страхование. Четыре года разрабатываю backend в страховании и платежах: антифрод, очереди, аналитика на потоке событий.">
+  <title>Ярослав (ferokuk) — Python-разработчик | финтех</title>
+  <meta name="description" content="Python-разработчик с 4+ годами опыта в финтехе и страховании: платежи, антифрод, Kafka, PostgreSQL, FastAPI и надёжная работа сервисов.">
   <link rel="canonical" href="https://ferokuk.dev/">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="ferokuk.dev">
   <meta property="og:url" content="https://ferokuk.dev/">
-  <meta property="og:title" content="Ярослав (ferokuk) — высоконагруженный backend на Python">
-  <meta property="og:description" content="Python backend · финтех и страхование. Четыре года разрабатываю backend в страховании и платежах: антифрод, очереди, аналитика на потоке событий.">
+  <meta property="og:title" content="Ярослав (ferokuk) — Python-разработчик | финтех">
+  <meta property="og:description" content="Python-разработчик с 4+ годами опыта в финтехе и страховании: платежи, антифрод, Kafka, PostgreSQL, FastAPI и надёжная работа сервисов.">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ярослав (ferokuk) — высоконагруженный backend на Python">
-  <meta name="twitter:description" content="Python backend · финтех и страхование. Четыре года разрабатываю backend в страховании и платежах: антифрод, очереди, аналитика на потоке событий.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ярослав (ferokuk) — Python-разработчик | финтех">
+  <meta name="twitter:description" content="Python-разработчик с 4+ годами опыта в финтехе и страховании: платежи, антифрод, Kafka, PostgreSQL, FastAPI и надёжная работа сервисов.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="assets/js/app.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/app.js" defer></script>
+  <link rel="alternate" hreflang="ru" href="https://ferokuk.dev/">
+  <link rel="alternate" hreflang="en" href="https://ferokuk.dev/en/">
+  <link rel="alternate" hreflang="x-default" href="https://ferokuk.dev/">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://ferokuk.dev/assets/og/cover-ru.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ferokuk.dev — Python backend, финтех и антифрод. Схема обработки событий в антифроде.">
+  <meta name="twitter:image" content="https://ferokuk.dev/assets/og/cover-ru.png">
+  <meta name="twitter:image:alt" content="ferokuk.dev — Python backend, финтех и антифрод. Схема обработки событий в антифроде.">
 </head>
 <body>
-  <div id="app" class="app" data-l="ru"
-       data-title-ru="Ярослав (ferokuk) — высоконагруженный backend на Python"
-       data-title-en="Yaroslav (ferokuk) — high-load Python backend">
+  <a href="#main" class="skip-link">Перейти к содержимому</a>
 
-    <div class="bg-glow"></div>
-    <div class="bg-grid"></div>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112122572', 'ym');
+
+    ym(112122572, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112122572" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <div id="app" class="app">
+
+    <div class="bg-glow" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
 
     <header class="site-header">
-      <nav class="nav">
+      <nav class="nav" aria-label="Основная навигация">
         <a href="#top" data-noselect="" class="brand">
           <span class="brand-dot"></span>
           ferokuk<span class="brand-suffix">.dev</span>
         </a>
         <div id="nav-links" class="nav-links">
-          <a href="#work" class="nav-link"><span data-ru="">Проекты</span><span data-en="">Work</span></a>
-          <a href="#stack" class="nav-link"><span data-ru="">Стек</span><span data-en="">Stack</span></a>
-          <a href="#path" class="nav-link"><span data-ru="">Опыт</span><span data-en="">Experience</span></a>
-          <a href="#contact" class="nav-link"><span data-ru="">Связаться</span><span data-en="">Contact</span></a>
+          <a href="#work" class="nav-link">Проекты</a>
+          <a href="#stack" class="nav-link">Стек</a>
+          <a href="#path" class="nav-link">Опыт</a>
+          <a href="#contact" class="nav-link">Связаться</a>
         </div>
-        <div class="lang-switch">
-          <button type="button" id="lang-ru" data-lb="ru" class="lang-btn">RU</button>
-          <button type="button" id="lang-en" data-lb="en" class="lang-btn">EN</button>
+        <div class="lang-switch" role="group" aria-label="Язык">
+          <a id="lang-ru" href="/" hreflang="ru" lang="ru" class="lang-btn" aria-current="page">RU</a>
+          <a id="lang-en" href="/en/" hreflang="en" lang="en" class="lang-btn">EN</a>
         </div>
         <a href="https://cv.ferokuk.dev" target="_blank" rel="noopener" class="btn-cv">CV <span class="cv-arrow">↗</span></a>
       </nav>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
       <section id="top" class="hero">
         <div id="hero-grid" class="hero-grid">
-          <div class="min-w-0">
-            <div class="hero-badge" data-rev="">
-              <span class="hero-badge-dot"></span>
-              <span data-ru="">финтех и страхование</span><span data-en="">fintech & insurance</span>
-            </div>
-            <h1 class="hero-title" data-rev="" data-delay="70" data-noselect="" lang="ru">
-              <span data-ru=""><span class="grad-acc grad-acc-lead">Высо&shy;ко&shy;на&shy;гру&shy;жен&shy;ный</span> backend на Python</span>
-              <span data-en="">High-load <span class="grad-acc">Python backend</span></span>
+          <div class="min-w-0 hero-copy" data-rev="">
+            <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>
+              финтех и страхование</div>
+            <h1 class="hero-title" data-noselect="" lang="ru">
+              <span class="grad-acc grad-acc-lead">Высо&shy;ко&shy;на&shy;гру&shy;жен&shy;ный</span> backend на Python
+
             </h1>
-            <p class="hero-lede" data-rev="" data-delay="140">
-              <span data-ru="">Меня зовут Ярослав, в <a class="link-u" href="https://github.com/ferokuk" target="_blank" rel="noopener">GitHub</a> и <a class="link-u" href="https://t.me/ferokuk" target="_blank" rel="noopener">Telegram</a> — <strong class="strong-ink">ferokuk</strong>. Четыре года разрабатываю backend в страховании и платежах: антифрод, очереди, аналитика на потоке событий. Нахожу узкие места, в которых сервис теряет в скорости, и держу его стабильным под нагрузкой.</span>
-              <span data-en="">I'm Yaroslav — <strong class="strong-ink">ferokuk</strong> on <a class="link-u" href="https://github.com/ferokuk" target="_blank" rel="noopener">GitHub</a> and <a class="link-u" href="https://t.me/ferokuk" target="_blank" rel="noopener">Telegram</a>. For four years I've designed and built backends in insurance and payments: antifraud, queues, analytics on an event stream. I work out where and why a service loses speed, and keep it steady under load.</span>
-            </p>
-            <div class="hero-actions" data-rev="" data-delay="210">
-              <a class="btn-primary" href="#work"><span data-ru="">Избранные проекты</span><span data-en="">What I've built</span></a>
-              <a class="btn-secondary" href="#contact"><span data-ru="">Написать мне</span><span data-en="">Get in touch</span></a>
+            <p class="hero-lede">Ярослав, Python-разработчик с 4+ годами опыта в страховании и платежах. Проектирую и поддерживаю антифрод, системы обработки событий и сервисы под нагрузкой — от API и схемы данных до очередей, мониторинга и инцидентов.</p>
+            <p class="hero-identity"><strong class="strong-ink">ferokuk</strong> · <a class="link-u" href="https://github.com/ferokuk" target="_blank" rel="noopener">GitHub</a> · <a class="link-u" href="https://t.me/ferokuk" target="_blank" rel="noopener">Telegram</a></p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="#work">Избранные проекты</a>
+              <a class="btn-secondary" href="#contact">Написать мне</a>
             </div>
 
           </div>
 
-          <div class="panel-wrap" data-rev="" data-delay="120" data-noselect="">
-            <div class="panel-glow"></div>
+          <figure class="panel-wrap pipeline-figure" data-noselect="" data-rev="">
+            <div class="panel-glow" aria-hidden="true"></div>
             <div id="pipeline" class="panel">
               <div class="panel-head">
                 <span class="panel-file">antifraud/api.py</span>
-                <span class="panel-live"><span class="panel-live-dot"></span>live</span>
-              </div>
-
-              <div class="panel-body">
-                <div class="pl-srcs">
-                  <span class="pl-src" data-src="">web UI</span>
-                  <span class="pl-src" data-src="">mobile app</span>
-                  <span class="pl-src" data-src="">partner API</span>
-                </div>
-
-                <div class="pl-bracket">
-                  <span class="pl-brk-l"></span>
-                  <span class="pl-brk-c"></span>
-                  <span class="pl-brk-r"></span>
-                  <span class="pl-brk-b"></span>
-                </div>
-
-                <div class="pl-conn pl-conn-sm" data-conn="">
-                  <span class="pl-fill" data-fill=""></span>
-                  <span class="pl-dot" data-dot=""></span>
-                  <span class="pl-dot2" data-dot2=""></span>
-                </div>
-
-                <div class="pl-node pl-gw" data-k="gw">
-                  <div class="pl-gw-head">
-                    <span class="ink">FastAPI gateway</span>
-                    <span class="pl-gw-pods"><span data-k="pods">4</span> pods</span>
+                <div class="pipeline-controls">
+                  <div class="demo-info">
+                    <button id="demo-info" class="panel-live demo-trigger" type="button" aria-describedby="demo-tooltip" aria-expanded="false"><span class="panel-live-dot" aria-hidden="true"></span>demo</button>
+                    <div id="demo-tooltip" class="demo-tooltip" role="tooltip"><span class="demo-tooltip-text">Интерактивная схема антифрода на основе реального проекта. События и показатели синтетические; значения подобраны по масштабу реальной системы.</span></div>
                   </div>
-                  <div class="pl-pods">
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                    <span class="pl-pod" data-pod=""></span>
-                  </div>
-                </div>
-
-                <div class="pl-conn" data-conn="">
-                  <span class="pl-fill" data-fill=""></span>
-                  <span class="pl-dot" data-dot=""></span>
-                  <span class="pl-dot2" data-dot2=""></span>
-                </div>
-
-                <div class="pl-node pl-ev" data-k="ev">
-                  <span class="pl-ev-name" data-k="evname">payment.received</span>
-                  <span class="pl-ev-id" data-k="evid">#F203-6642</span>
-                </div>
-
-                <div class="pl-conn" data-conn="">
-                  <span class="pl-fill" data-fill=""></span>
-                  <span class="pl-dot" data-dot=""></span>
-                  <span class="pl-dot2" data-dot2=""></span>
-                </div>
-
-                <div class="pl-node pl-af" data-k="af">
-                  <div class="pl-af-head">
-                    <span class="pl-af-title">ANTIFRAUD</span>
-                    <span class="pl-af-meta">rules &middot; model v7</span>
-                  </div>
-                  <span class="pl-rule"></span>
-                  <div class="pl-af-grid">
-                    <span class="pl-step">01 enrich</span>
-                    <span class="pl-track" data-track="">
-                      <span class="pl-track-line"></span>
-                      <span class="pl-track-dot" data-dot=""></span>
-                    </span>
-                    <span class="pl-af-val">Redis <span class="dim">&middot; velocity cache</span></span>
-                    <span class="pl-step"></span>
-                    <span class="pl-track" data-track="">
-                      <span class="pl-track-line"></span>
-                      <span class="pl-track-dot" data-dot=""></span>
-                    </span>
-                    <span class="pl-af-val">PostgreSQL <span class="dim">&middot; customer profile</span></span>
-                    <span class="pl-step">02 score</span>
-                    <span class="pl-track" data-track="">
-                      <span class="pl-track-line"></span>
-                      <span class="pl-track-dot" data-dot=""></span>
-                    </span>
-                    <span class="pl-score-row"><span class="pl-score" data-k="score">0.24</span> <span class="dim">&middot; flag &gt; 0.80</span></span>
-                  </div>
-                </div>
-
-                <div class="pl-conn" data-conn="">
-                  <span class="pl-fill" data-fill=""></span>
-                  <span class="pl-dot" data-dot=""></span>
-                  <span class="pl-dot2" data-dot2=""></span>
-                </div>
-
-                <div class="pl-node pl-out" data-k="out">
-                  <span class="pl-out-text" data-k="outtext">awaiting event</span>
-                </div>
-
-                <div class="pl-conn" data-conn="">
-                  <span class="pl-fill" data-fill=""></span>
-                  <span class="pl-dot" data-dot=""></span>
-                  <span class="pl-dot2" data-dot2=""></span>
-                </div>
-
-                <div class="pl-bus">
-                  <div class="pl-bus-row">
-                    <span class="pl-exit" data-k="e-kafka">
-                      <span class="pl-exit-name">Kafka</span>
-                      <span class="pl-exit-sub">decisions</span>
-                    </span>
-                    <span class="pl-exit" data-k="e-ch">
-                      <span class="pl-exit-name">ClickHouse</span>
-                      <span class="pl-exit-sub">audit log</span>
-                    </span>
-                  </div>
-                  <span class="pl-bus-gap"></span>
-                  <div class="pl-bus-row pl-bus-end">
-                    <span class="pl-exit" data-k="e-case">
-                      <span class="pl-exit-name">case queue</span>
-                      <span class="pl-exit-sub">manual review</span>
-                    </span>
-                    <span class="pl-exit" data-k="e-ops">
-                      <span class="pl-exit-name">ops alert</span>
-                      <span class="pl-exit-sub">high-risk only</span>
-                    </span>
-                  </div>
+                  <button id="pipeline-toggle" class="pipeline-toggle" type="button" aria-controls="pipeline-visual" aria-pressed="false" aria-label="Приостановить демо" title="Приостановить демо" data-pause-label="Приостановить демо" data-resume-label="Продолжить демо" data-reduced-label="Анимация отключена настройками устройства" disabled>
+                    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 6v12M16 6v12"/></svg>
+                    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 5 11 7-11 7Z"/></svg>
+                  </button>
                 </div>
               </div>
 
-              <div class="panel-foot">
-                <div class="pl-traffic">
-                  <span class="pl-cap">traffic</span>
-                  <span class="pl-bar-track">
-                    <span class="pl-bar" data-k="bar"></span>
-                  </span>
+              <div id="pipeline-visual" class="pipeline-visual" role="img" aria-label="Схема антифрода: запросы из веб-интерфейса, мобильного приложения и партнёрского API поступают в FastAPI. Событие проходит проверку с использованием Redis, PostgreSQL и модели оценки риска. Решение направляется в Kafka, ClickHouse, очередь ручной проверки или оповещение." aria-describedby="demo-tooltip">
+                <div class="panel-body">
+                  <div class="pl-srcs">
+                    <span class="pl-src" data-src="">web UI</span>
+                    <span class="pl-src" data-src="">mobile app</span>
+                    <span class="pl-src" data-src="">partner API</span>
+                  </div>
+
+                  <div class="pl-bracket">
+                    <span class="pl-brk-l"></span>
+                    <span class="pl-brk-c"></span>
+                    <span class="pl-brk-r"></span>
+                    <span class="pl-brk-b"></span>
+                  </div>
+
+                  <div class="pl-conn pl-conn-sm" data-conn="">
+                    <span class="pl-fill" data-fill=""></span>
+                    <span class="pl-dot" data-dot=""></span>
+                    <span class="pl-dot2" data-dot2=""></span>
+                  </div>
+
+                  <div class="pl-node pl-gw" data-k="gw">
+                    <div class="pl-gw-head">
+                      <span class="ink">FastAPI gateway</span>
+                      <span class="pl-gw-pods"><span data-k="pods">4</span> pods</span>
+                    </div>
+                    <div class="pl-pods">
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                      <span class="pl-pod" data-pod=""></span>
+                    </div>
+                  </div>
+
+                  <div class="pl-conn" data-conn="">
+                    <span class="pl-fill" data-fill=""></span>
+                    <span class="pl-dot" data-dot=""></span>
+                    <span class="pl-dot2" data-dot2=""></span>
+                  </div>
+
+                  <div class="pl-node pl-ev" data-k="ev">
+                    <span class="pl-ev-name" data-k="evname">payment.received</span>
+                    <span class="pl-ev-id" data-k="evid">#F203-6642</span>
+                  </div>
+
+                  <div class="pl-conn" data-conn="">
+                    <span class="pl-fill" data-fill=""></span>
+                    <span class="pl-dot" data-dot=""></span>
+                    <span class="pl-dot2" data-dot2=""></span>
+                  </div>
+
+                  <div class="pl-node pl-af" data-k="af">
+                    <div class="pl-af-head">
+                      <span class="pl-af-title">ANTIFRAUD</span>
+                      <span class="pl-af-meta">rules &middot; model v7</span>
+                    </div>
+                    <span class="pl-rule"></span>
+                    <div class="pl-af-grid">
+                      <span class="pl-step">01 enrich</span>
+                      <span class="pl-track" data-track="">
+                        <span class="pl-track-line"></span>
+                        <span class="pl-track-dot" data-dot=""></span>
+                      </span>
+                      <span class="pl-af-val">Redis <span class="dim pl-detail">&middot; velocity cache</span></span>
+                      <span class="pl-step"></span>
+                      <span class="pl-track" data-track="">
+                        <span class="pl-track-line"></span>
+                        <span class="pl-track-dot" data-dot=""></span>
+                      </span>
+                      <span class="pl-af-val">PostgreSQL <span class="dim pl-detail">&middot; customer profile</span></span>
+                      <span class="pl-step">02 score</span>
+                      <span class="pl-track" data-track="">
+                        <span class="pl-track-line"></span>
+                        <span class="pl-track-dot" data-dot=""></span>
+                      </span>
+                      <span class="pl-score-row"><span class="pl-score" data-k="score">0.24</span> <span class="dim">&middot; flag &gt; 0.80</span></span>
+                    </div>
+                  </div>
+
+                  <div class="pl-conn" data-conn="">
+                    <span class="pl-fill" data-fill=""></span>
+                    <span class="pl-dot" data-dot=""></span>
+                    <span class="pl-dot2" data-dot2=""></span>
+                  </div>
+
+                  <div class="pl-node pl-out" data-k="out">
+                    <span class="pl-out-text" data-k="outtext">awaiting event</span>
+                  </div>
+
+                  <div class="pl-conn" data-conn="">
+                    <span class="pl-fill" data-fill=""></span>
+                    <span class="pl-dot" data-dot=""></span>
+                    <span class="pl-dot2" data-dot2=""></span>
+                  </div>
+
+                  <div class="pl-bus">
+                    <div class="pl-bus-row">
+                      <span class="pl-exit" data-k="e-kafka">
+                        <span class="pl-exit-name">Kafka</span>
+                        <span class="pl-exit-sub">decisions</span>
+                      </span>
+                      <span class="pl-exit" data-k="e-ch">
+                        <span class="pl-exit-name">ClickHouse</span>
+                        <span class="pl-exit-sub">audit log</span>
+                      </span>
+                    </div>
+                    <span class="pl-bus-gap"></span>
+                    <div class="pl-bus-row pl-bus-end">
+                      <span class="pl-exit" data-k="e-case">
+                        <span class="pl-exit-name">case queue</span>
+                        <span class="pl-exit-sub">manual review</span>
+                      </span>
+                      <span class="pl-exit" data-k="e-ops">
+                        <span class="pl-exit-name">ops alert</span>
+                        <span class="pl-exit-sub">high-risk only</span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div class="pl-stats">
-                  <span><span class="ink" data-k="rps">2.42</span>k rps</span>
-                  <span>p99 <span class="ink" data-k="p99">85</span> ms</span>
-                  <span>5xx <span class="pl-err" data-k="err">0.02</span>%</span>
+
+                <div class="panel-foot">
+                  <div class="pl-traffic">
+                    <span class="pl-cap">traffic</span>
+                    <span class="pl-bar-track">
+                      <span class="pl-bar" data-k="bar"></span>
+                    </span>
+                  </div>
+                  <div class="pl-stats">
+                    <span><span class="ink" data-k="rps">2.42</span>k rps</span>
+                    <span>p99 <span class="ink" data-k="p99">85</span> ms</span>
+                    <span>5xx <span class="pl-err" data-k="err">0.02</span>%</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </figure>
 
-          <div class="stats" data-rev="" data-delay="90">
+          <div class="stats">
             <div class="stat">
-              <span class="stat-label"><span data-ru="">СОГАЗ</span><span data-en="">SOGAZ</span></span>
+              <span class="stat-label">СОГАЗ</span>
               <span class="stat-value">+13<span class="acc">%</span></span>
-              <span class="stat-note"><span data-ru="">фрода находится сразу</span><span data-en="">more fraud caught</span></span>
+              <span class="stat-note">выявленных фродовых услуг за квартал после внедрения по сравнению с предыдущим кварталом</span>
             </div>
             <div class="stat">
-              <span class="stat-label"><span data-ru="">СОГАЗ</span><span data-en="">SOGAZ</span></span>
-              <span class="stat-value">15<span class="acc">+</span></span>
-              <span class="stat-note"><span data-ru="">MR в день через ИИ-ревью</span><span data-en="">MRs a day via AI review</span></span>
+              <span class="stat-label">СОГАЗ</span>
+              <span class="stat-value">15<span class="acc">+ MR</span></span>
+              <span class="stat-note">ежедневно проходят первичную проверку ИИ</span>
             </div>
             <div class="stat">
-              <span class="stat-label"><span data-ru="">СОГАЗ</span><span data-en="">SOGAZ</span></span>
-              <span class="stat-value"><span data-ru="">60→5<span class="acc"> мин</span></span><span data-en="">60→5<span class="acc"> min</span></span></span>
-              <span class="stat-note"><span data-ru="">обнаружение инцидента</span><span data-en="">incident detection</span></span>
+              <span class="stat-label">СОГАЗ</span>
+              <span class="stat-value">60<span class="visually-hidden"> → </span><svg class="metric-arrow" viewBox="0 0 28 20" aria-hidden="true" focusable="false"><path d="M1 10h25M20 4l6 6-6 6"/></svg>5<span class="acc"> мин</span></span>
+              <span class="stat-note">время от инцидента до обнаружения · MTTD</span>
             </div>
             <div class="stat">
               <span class="stat-label">AmPay</span>
-              <span class="stat-value"><span data-ru="">часы→<span class="acc">сек</span></span><span data-en="">hrs→<span class="acc">sec</span></span></span>
-              <span class="stat-note"><span data-ru="">задержка аналитики</span><span data-en="">analytics lag</span></span>
+              <span class="stat-value">часы<span class="visually-hidden"> → </span><svg class="metric-arrow" viewBox="0 0 28 20" aria-hidden="true" focusable="false"><path d="M1 10h25M20 4l6 6-6 6"/></svg><span class="acc">сек</span></span>
+              <span class="stat-note">задержка аналитики · до десятков секунд</span>
             </div>
             <div class="stat">
               <span class="stat-label">AmPay</span>
               <span class="stat-value">−68<span class="acc">%</span></span>
-              <span class="stat-note"><span data-ru="">p95 задержки API</span><span data-en="">API p95 latency</span></span>
+              <span class="stat-note">p95 REST API · 2.5 с → 0.8 с</span>
             </div>
             <div class="stat">
-              <span class="stat-label"><span data-ru="">ЦИАРС</span><span data-en="">CIARS</span></span>
+              <span class="stat-label">ЦИАРС</span>
               <span class="stat-value">1 <span class="acc">TB+</span></span>
-              <span class="stat-note"><span data-ru="">данных через пайплайн</span><span data-en="">through one pipeline</span></span>
+              <span class="stat-note">текстовых данных обработано в ETL-процессе</span>
             </div>
           </div>
         </div>
@@ -272,19 +303,9 @@
             <span class="marquee-item">Redis</span><span class="marquee-dot">·</span>
             <span class="marquee-item">RabbitMQ</span><span class="marquee-dot">·</span>
             <span class="marquee-item">Kubernetes</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">LangGraph</span><span class="marquee-dot">·</span>
+            <span class="marquee-item">LangGraph</span>
           </div>
-          <div class="marquee-group" aria-hidden="true">
-            <span class="marquee-item">FastAPI</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">Django · DRF</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">PostgreSQL</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">Kafka</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">Celery</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">Redis</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">RabbitMQ</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">Kubernetes</span><span class="marquee-dot">·</span>
-            <span class="marquee-item">LangGraph</span><span class="marquee-dot">·</span>
-          </div>
+
         </div>
       </div>
 
@@ -292,26 +313,26 @@
         <div class="container">
           <header class="section-head-row" data-rev="">
             <div>
-              <div class="eyebrow">01 — <span data-ru="">проекты</span><span data-en="">work</span></div>
-              <h2 class="section-title"><span data-ru="">Избранные проекты</span><span data-en="">What I've built</span></h2>
+              <div class="eyebrow">01 — проекты</div>
+              <h2 class="section-title">Избранные проекты</h2>
             </div>
-            <p class="section-intro"><span data-ru="">Код закрытый, ссылок на репозитории не будет. Ниже описано, что было до и что изменилось после.</span><span data-en="">The work is proprietary, so there are no repository links. What it was and what it became is below.</span></p>
+            <p class="section-intro">Код закрытый, ссылок на репозитории не будет. Ниже описано, что было до и что изменилось после.</p>
           </header>
 
           <div class="work-grid" id="work-grid">
 
-            <article class="card-project" data-rev="">
+            <article class="card-project">
               <div class="card-top">
-                <span class="card-code">P—01 · <span data-ru="">СОГАЗ</span><span data-en="">SOGAZ</span></span>
-                <span class="pill-status"><span data-ru="">в проде</span><span data-en="">live</span></span>
+                <span class="card-code">P—01 · СОГАЗ</span>
+                <span class="pill-status">в эксплуатации</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title"><span data-ru="">Антифрод по ДМС</span><span data-en="">Medical-insurance antifraud</span></h3>
-                <p class="card-text"><span data-ru="">Страховая платит по счетам от 12 000 клиник и лабораторий. Часть счетов содержит ошибки, часть — намеренный обман, а вручную такой объём проверить невозможно. Сервис проверяет каждый счёт до выплаты: сначала по правилам из клинических рекомендаций Минздрава, затем через ML-скоринг.</span><span data-en="">The insurer pays invoices from 12,000 clinics and labs. Some are mistakes, some are fraud, and nobody can check that volume by hand. The service reviews every invoice before payout: first rules taken from clinical guidelines, then ML scoring.</span></p>
+                <h3 class="card-title">Антифрод по ДМС</h3>
+                <p class="card-text">Страховая платит по счетам от 12 000 клиник и лабораторий. Часть счетов содержит ошибки, часть — намеренный обман, а вручную такой объём проверить невозможно. Сервис проверяет каждый счёт до выплаты: сначала по правилам из клинических рекомендаций Минздрава, затем с помощью модели оценки риска.</p>
               </div>
               <div class="card-metric">
                 <span class="card-metric-value">+13%</span>
-                <span class="card-metric-note"><span data-ru="">больше фрода находится до выплаты</span><span data-en="">more fraud caught before payout</span></span>
+                <span class="card-metric-note">выявленных фродовых услуг за квартал после внедрения относительно предыдущего квартала</span>
               </div>
               <div class="tags">
                 <span class="tag">FastAPI</span>
@@ -321,18 +342,18 @@
               </div>
             </article>
 
-            <article class="card-project" data-rev="" data-delay="70">
+            <article class="card-project">
               <div class="card-top">
-                <span class="card-code">P—02 · <span data-ru="">СОГАЗ</span><span data-en="">SOGAZ</span></span>
-                <span class="pill-status"><span data-ru="">в CI/CD</span><span data-en="">in CI/CD</span></span>
+                <span class="card-code">P—02 · СОГАЗ</span>
+                <span class="pill-status">в CI/CD</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title"><span data-ru="">ИИ-агент для code review</span><span data-en="">AI agent for code review</span></h3>
-                <p class="card-text"><span data-ru="">В большой команде ревью становится узким местом: код уже готов, но ждёт освободившегося ревьюера. Агент просматривает merge request первым и берёт на себя механическую часть: стиль, очевидные баги, забытые тесты. Он работает внутри контура, наружу код не уходит.</span><span data-en="">In a big team, review is the bottleneck. The code is done but waits for a free reviewer. The agent looks at the merge request first and takes the mechanical part: style, obvious bugs, missing tests. It runs inside the network; no code leaves it.</span></p>
+                <h3 class="card-title">ИИ-агент для проверки кода</h3>
+                <p class="card-text">Агент подключён к CI/CD и первым проверяет каждый запрос на слияние изменений: стиль кода, типовые дефекты и наличие тестов. Код остаётся внутри корпоративного контура. У разработчиков стало меньше рутинных замечаний при проверке кода и больше времени на архитектуру и бизнес-логику.</p>
               </div>
               <div class="card-metric">
                 <span class="card-metric-value">15+ MR</span>
-                <span class="card-metric-note"><span data-ru="">проходят через агента каждый день</span><span data-en="">go through the agent every day</span></span>
+                <span class="card-metric-note">ежедневно проходят первичную проверку ИИ</span>
               </div>
               <div class="tags">
                 <span class="tag">FastAPI</span>
@@ -343,40 +364,41 @@
               </div>
             </article>
 
-            <article class="card-project" data-rev="" data-delay="140">
+            <article class="card-project">
               <div class="card-top">
                 <span class="card-code">P—03 · AmPay</span>
-                <span class="pill-status"><span data-ru="">в проде</span><span data-en="">live</span></span>
+                <span class="pill-status">в эксплуатации</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title"><span data-ru="">Kafka и аналитический пайплайн</span><span data-en="">Kafka and the analytics pipeline</span></h3>
-                <p class="card-text"><span data-ru="">Платформа принимает платежи и распределяет их между несколькими провайдерами. Аналитика обращалась прямыми запросами к боевой базе: отчёты отставали на часы и мешали транзакциям. Я вынес события в Kafka через outbox, и дашборды стали читать поток, а не базу, — задержка сократилась до секунд. Кроме того, собрал сервис уведомлений о статусах и перевёл обработку платежей в асинхронный режим.</span><span data-en="">The platform takes payments and routes them across several providers. Analytics used to query the production database directly: reports lagged by hours and competed with live transactions. I moved events into Kafka through an outbox, so dashboards read the stream instead of the database and lag by seconds. Along the way I built the status notification service and made payment processing async.</span></p>
+                <h3 class="card-title">Потоковая аналитика на Kafka</h3>
+                <p class="card-text">Платформа принимает платежи и распределяет их между несколькими платёжными операторами. Аналитика напрямую обращалась к PostgreSQL: отчёты отставали на часы и конкурировали с транзакционной нагрузкой. Вынес аналитику на поток событий в Kafka — задержка сократилась до десятков секунд. Исходящие события сохраняются в PostgreSQL в одной транзакции с бизнес-данными, а затем публикуются в Kafka. Это устраняет разрыв между записью в базу и отправкой события. Отдельно разработал сервис уведомлений о статусах платежей и перевёл обработку в асинхронный режим.</p>
               </div>
               <div class="card-metric">
-                <span class="card-metric-value"><span data-ru="">часы → сек</span><span data-en="">hrs → sec</span></span>
-                <span class="card-metric-note"><span data-ru="">задержка аналитики после переноса на поток событий</span><span data-en="">analytics lag after the move to an events</span></span>
+                <span class="card-metric-value">часы → сек</span>
+                <span class="card-metric-note">задержка аналитики: с часов до десятков секунд</span>
               </div>
               <div class="tags">
                 <span class="tag">FastAPI</span>
                 <span class="tag">Kafka</span>
+                <span class="tag">Transactional outbox</span>
                 <span class="tag">RabbitMQ</span>
                 <span class="tag">Celery</span>
                 <span class="tag">PostgreSQL</span>
               </div>
             </article>
 
-            <article class="card-project" data-rev="" data-delay="210">
+            <article class="card-project">
               <div class="card-top">
-                <span class="card-code">P—04 · <span data-ru="">ЦИАРС</span><span data-en="">CIARS</span></span>
-                <span class="pill-status"><span data-ru="">сдан</span><span data-en="">shipped</span></span>
+                <span class="card-code">P—04 · ЦИАРС</span>
+                <span class="pill-status">сдан</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title"><span data-ru="">ETL и мониторинг перевозок</span><span data-en="">ETL and freight monitoring</span></h3>
-                <p class="card-text"><span data-ru="">Заказчик хотел видеть все перевозки на одном экране, но данные были разбросаны по госреестрам и PDF. Я собрал пайплайн: он забирает их, приводит к единой схеме и загружает в Postgres, а поверх строятся дашборды с графами маршрутов. Сложнее всего дался парсер реестров: источник ограничивает частоту запросов и нередко отдаёт повреждённые файлы.</span><span data-en="">The client wanted every shipment on one screen. The data sat in state registries and PDFs. I built the pipeline: it pulls them, maps them to one schema and lands it in Postgres. Dashboards with route graphs sit on top. The hardest part was the registry parser: the source throttles requests and often returns broken files.</span></p>
+                <h3 class="card-title">ETL и мониторинг перевозок</h3>
+                <p class="card-text">Заказчик хотел видеть все перевозки на одном экране, но данные были разбросаны по госреестрам и PDF. Я собрал систему, которая забирает данные, приводит их к единой схеме и загружает в PostgreSQL. На их основе строятся отчёты с графами маршрутов. Сложнее всего оказался сбор данных из реестров: источник ограничивает частоту запросов и нередко отдаёт повреждённые файлы.</p>
               </div>
               <div class="card-metric">
-                <span class="card-metric-value"><span data-ru="">50 000</span><span data-en="">50,000</span></span>
-                <span class="card-metric-note"><span data-ru="">документов госреестров в едином формате</span><span data-en="">registry documents in one schema</span></span>
+                <span class="card-metric-value">50 000</span>
+                <span class="card-metric-note">документов госреестров в едином формате</span>
               </div>
               <div class="tags">
                 <span class="tag">Pandas</span>
@@ -393,14 +415,14 @@
       <section id="stack" class="section">
         <div class="container">
           <div data-rev="" class="section-head">
-            <div class="eyebrow">02 — <span data-ru="">стек</span><span data-en="">stack</span></div>
-            <h2 class="section-title section-title-balance"><span data-ru="">Как я это делаю</span><span data-en="">How I work</span></h2>
+            <div class="eyebrow">02 — стек</div>
+            <h2 class="section-title section-title-balance">Как я это делаю</h2>
           </div>
           <div id="stack-grid" class="stack-grid">
-            <div data-rev="" class="card-stack">
+            <div class="card-stack">
               <div data-noselect="" class="stack-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8.5 7.5 4 12l4.5 4.5"/><path d="M15.5 7.5 20 12l-4.5 4.5"/><path d="M13.4 5.6 10.6 18.4"/></svg></div>
-              <h3 class="stack-title"><span data-ru="">Сервисы и API</span><span data-en="">Services & APIs</span></h3>
-              <p class="stack-text"><span data-ru="">FastAPI — для асинхронных сервисов, Django с DRF — там, где много админки и CRUD. Контракты описываю в Pydantic и покрываю интеграционными тестами с реальной базой и очередью.</span><span data-en="">FastAPI for async services, Django with DRF where there's a lot of admin and CRUD. Contracts live in Pydantic, covered by integration tests against a real database and queue.</span></p>
+              <h3 class="stack-title">Сервисы и API</h3>
+              <p class="stack-text">FastAPI использую для изолированных API-сервисов с типизированными контрактами и асинхронными интеграциями. Django/DRF — там, где зрелая ORM, панель администрирования и экосистема позволяют быстрее развивать насыщенную бизнес-логику. Контракты описываю в Pydantic, критические интеграции проверяю тестами с реальной БД и очередью.</p>
               <div class="tags">
                 <span class="tag tag-sm">FastAPI</span>
                 <span class="tag tag-sm">Django</span>
@@ -408,10 +430,10 @@
                 <span class="tag tag-sm">pytest</span>
               </div>
             </div>
-            <div data-rev="" data-delay="70" class="card-stack">
+            <div class="card-stack">
               <div data-noselect="" class="stack-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></div>
-              <h3 class="stack-title"><span data-ru="">Данные и очереди</span><span data-en="">Data & queues</span></h3>
-              <p class="stack-text"><span data-ru="">Основное хранилище — Postgres с составными и частичными индексами под отчёты. Тяжёлые задачи выполняются в Celery, события между сервисами передаются в Kafka через outbox, чтобы не терять их при сбоях.</span><span data-en="">Postgres is the main store, with composite and partial indexes for reports. Heavy jobs go to Celery; events between services go through Kafka with an outbox, so a crash never drops them.</span></p>
+              <h3 class="stack-title">Данные и очереди</h3>
+              <p class="stack-text">Основное хранилище — PostgreSQL с составными и частичными индексами под отчёты. Тяжёлые задачи выполняются в Celery. События для Kafka сохраняю в таблице исходящих событий в одной транзакции с бизнес-данными. Так устраняется разрыв между записью в PostgreSQL и публикацией события.</p>
               <div class="tags">
                 <span class="tag tag-sm">PostgreSQL</span>
                 <span class="tag tag-sm">Redis</span>
@@ -420,10 +442,10 @@
                 <span class="tag tag-sm">ClickHouse</span>
               </div>
             </div>
-            <div data-rev="" data-delay="140" class="card-stack card-stack-plain">
+            <div class="card-stack card-stack-plain">
               <div data-noselect="" class="stack-icon stack-icon-plain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12.5h4.2l2.6-6.5 4 13 2.6-6.5h5.6"/></svg></div>
-              <h3 class="stack-title"><span data-ru="">Прод и наблюдаемость</span><span data-en="">Production & observability</span></h3>
-              <p class="stack-text"><span data-ru="">Сервисы работают в Kubernetes с liveness- и readiness-пробами, сборка и деплой идут через GitLab CI. Метрики собираю в Prometheus и Grafana, алерты настраиваю не только на 5xx, но и на остановку платежей — она не менее критична.</span><span data-en="">Services run in Kubernetes with liveness and readiness probes; builds and deploys go through GitLab CI. Metrics land in Prometheus and Grafana, and alerts cover more than 5xx — payments stopping matters just as much.</span></p>
+              <h3 class="stack-title">Эксплуатация и мониторинг</h3>
+              <p class="stack-text">Сервисы работают в Kubernetes с проверками работоспособности и готовности к приёму запросов. Сборка и развёртывание идут через GitLab CI. Метрики собираю в Prometheus и Grafana, оповещения настраиваю не только на ошибки 5xx, но и на остановку платежей. После инцидента, когда оценка риска упёрлась в мощность процессора, перестал переносить число параллельных обработчиков между средами вслепую. Теперь учитываю доступные ресурсы процессора и провожу нагрузочные испытания на конфигурации, сопоставимой с рабочей.</p>
               <div class="tags">
                 <span class="tag tag-sm">Docker</span>
                 <span class="tag tag-sm">Kubernetes</span>
@@ -432,10 +454,10 @@
                 <span class="tag tag-sm">Grafana</span>
               </div>
             </div>
-            <div data-rev="" data-delay="210" class="card-stack">
+            <div class="card-stack">
               <div data-noselect="" class="stack-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="12" r="2.6"/><path d="m8.4 7.3 7.2 3.5"/><path d="m8.4 16.7 7.2-3.5"/><path d="M6 8.6v6.8"/></svg></div>
-              <h3 class="stack-title"><span data-ru="">ML и агенты</span><span data-en="">ML & agents</span></h3>
-              <p class="stack-text"><span data-ru="">ML-скоринг вынесен в отдельный сервис и вместе с ответом возвращает версию модели — без этого принятое решение потом не объяснить. Агентов собираю на LangGraph: явный граф шагов, ограничение на число итераций, лог каждого вызванного инструмента.</span><span data-en="">ML scoring is a separate service that returns the model version with every answer — otherwise you can't explain a decision later. I build agents on LangGraph: an explicit graph of steps, an iteration cap, a log of every tool call.</span></p>
+              <h3 class="stack-title">Модели и ИИ-агенты</h3>
+              <p class="stack-text">Оценка риска с помощью модели вынесена в отдельный сервис. В ответе он возвращает версию модели, чтобы можно было разобраться в принятом решении. Агентов собираю на LangGraph: явный граф шагов, ограничение на число итераций и журнал вызовов инструментов.</p>
               <div class="tags">
                 <span class="tag tag-sm">LangGraph</span>
                 <span class="tag tag-sm">LangChain</span>
@@ -451,99 +473,98 @@
       <section id="path" class="section">
         <div class="container">
           <div class="section-head" data-rev="">
-            <div class="eyebrow">03 — <span data-ru="">опыт</span><span data-en="">experience</span></div>
-            <h2 class="section-title"><span data-ru="">Где я это делал</span><span data-en="">Where I did it</span></h2>
+            <div class="eyebrow">03 — опыт</div>
+            <h2 class="section-title">Где я это делал</h2>
           </div>
 
           <div class="timeline">
-            <article class="timeline-row" data-rev="">
-              <div class="timeline-date timeline-date-current"><span data-ru="">Сентябрь 2026 — настоящее время</span><span data-en="">Sep 2026 — present</span></div>
+            <article class="timeline-row">
+              <div class="timeline-date timeline-date-current">Выход — сентябрь 2026</div>
               <div class="timeline-body">
-                <a class="logo-chip" href="https://www.sber.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Сбер"><img class="logo-chip-img" src="assets/icons/sber.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text"><span data-ru="">Сб</span><span data-en="">Sb</span></span></a>
+                <a class="logo-chip" href="https://www.sber.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Сбер"><img class="logo-chip-img" src="/assets/icons/sber.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text">Сб</span></a>
                 <div class="min-w-0">
-                  <h3 class="timeline-title"><span data-ru="">Python-разработчик · <a class="link-u4" href="https://www.sber.ru" target="_blank" rel="noopener">Сбер</a></span><span data-en="">Python developer · <a class="link-u4" href="https://www.sber.ru" target="_blank" rel="noopener">Sber</a></span></h3>
-                  <p class="timeline-text"><span data-ru="">Перехожу в backend-команду Сбера: те же высоконагруженные сервисы на Python в финтехе, но в другом масштабе.</span><span data-en="">Joining a backend team at Sber — the same high-load Python services in fintech, at a different scale.</span></p>
+                  <h3 class="timeline-title">Python-разработчик · <a class="link-u4" href="https://www.sber.ru" target="_blank" rel="noopener">Сбер</a></h3>
+                  <p class="timeline-text">Принял предложение о работе в команде серверной разработки Сбера.</p>
                 </div>
               </div>
             </article>
 
-            <article class="timeline-row" data-rev="" data-delay="70">
-              <div class="timeline-date"><span data-ru="">Июль 2025 — Сентябрь 2026</span><span data-en="">Jul 2025 — Sep 2026</span></div>
+            <article class="timeline-row">
+              <div class="timeline-date">Июль 2025 — сентябрь 2026</div>
               <div class="timeline-body">
-                <a class="logo-chip" style="--chip-bg:#000078" href="https://www.sogaz.ru" target="_blank" rel="noopener" data-noselect="" aria-label="СОГАЗ"><img class="logo-chip-img logo-chip-img--contain" src="assets/icons/sogaz-wordmark.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text"><span data-ru="">СО</span><span data-en="">SO</span></span></a>
+                <a class="logo-chip" style="--chip-bg:#000078" href="https://www.sogaz.ru" target="_blank" rel="noopener" data-noselect="" aria-label="СОГАЗ"><img class="logo-chip-img logo-chip-img--contain" src="/assets/icons/sogaz-wordmark.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text">СО</span></a>
                 <div class="min-w-0">
-                  <h3 class="timeline-title"><span data-ru="">Python-разработчик · <a class="link-u4" href="https://www.sogaz.ru" target="_blank" rel="noopener">СОГАЗ</a></span><span data-en="">Python developer · <a class="link-u4" href="https://www.sogaz.ru" target="_blank" rel="noopener">SOGAZ</a></span></h3>
-                  <p class="timeline-text"><span data-ru="">Антифрод по ДМС и ИИ-агенты. Отвечал за эти сервисы целиком, включая дежурства. Расчистил узкие места: тяжёлые операции перенёс в приоритетные очереди, переписал ORM-запросы, и обработка счетов перестала упираться в нагрузку. Настроил мониторинг, и инциденты стали обнаруживаться за пять минут вместо часа.</span><span data-en="">Medical-insurance antifraud and AI agents. The services are mine end to end, on-call included. I cleared the bottlenecks: heavy operations moved to priority queues, ORM queries rewritten. Invoice processing stopped backing up. I set up the monitoring, and incidents now surface in five minutes instead of an hour.</span></p>
+                  <h3 class="timeline-title">Python-разработчик · <a class="link-u4" href="https://www.sogaz.ru" target="_blank" rel="noopener">СОГАЗ</a></h3>
+                  <p class="timeline-text">Антифрод по ДМС и внутренние инструменты на основе ИИ. Вёл сервисы от проектирования и разработки до развёртывания, мониторинга и дежурств. Тяжёлые операции вынес в приоритетные очереди и переписал проблемные ORM-запросы — в пиковые периоды длина очереди сократилась до 10 раз. После настройки мониторинга время от начала инцидента до обнаружения сократилось примерно с 60 до 5 минут.</p>
                 </div>
               </div>
             </article>
 
-            <article class="timeline-row" data-rev="" data-delay="140">
-              <div class="timeline-date"><span data-ru="">Май 2024 — Июль 2025</span><span data-en="">May 2024 — Jul 2025</span></div>
+            <article class="timeline-row">
+              <div class="timeline-date">Май 2024 — июль 2025</div>
               <div class="timeline-body">
-                <a class="logo-chip" href="https://ampay.su" target="_blank" rel="noopener" data-noselect="" aria-label="AmPay"><img class="logo-chip-img" src="assets/icons/ampay.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text">Ap</span></a>
+                <a class="logo-chip" href="https://ampay.su" target="_blank" rel="noopener" data-noselect="" aria-label="AmPay"><img class="logo-chip-img" src="/assets/icons/ampay.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text">Ap</span></a>
                 <div class="min-w-0">
-                  <h3 class="timeline-title"><span data-ru="">Python-разработчик · <a class="link-u4" href="https://ampay.su" target="_blank" rel="noopener">AmPay</a></span><span data-en="">Python developer · <a class="link-u4" href="https://ampay.su" target="_blank" rel="noopener">AmPay</a></span></h3>
-                  <p class="timeline-text"><span data-ru="">Ядро платёжного сервиса: API для продавцов и обработка транзакций. Собрал сервис аналитики — события уходят в Kafka через outbox, и дашборды читают поток, а не боевую базу. Отдельно написал сервис уведомлений о статусах платежей и перевёл обработку в асинхронный режим.</span><span data-en="">The payment service core: merchant API and transaction processing. I built the analytics service — events go to Kafka through an outbox, so dashboards read the stream instead of the production database. I also wrote the status notification service and moved payment processing to async.</span></p>
+                  <h3 class="timeline-title">Python-разработчик · <a class="link-u4" href="https://ampay.su" target="_blank" rel="noopener">AmPay</a></h3>
+                  <p class="timeline-text">Ядро платёжного сервиса: REST API для продавцов и обработка транзакций. Вынес аналитику в Kafka, чтобы она не конкурировала с транзакционной нагрузкой на PostgreSQL. Публикацию организовал через таблицу исходящих событий: они сохраняются вместе с бизнес-данными в одной транзакции. Задержка данных сократилась с часов до десятков секунд. Оптимизацией SQL и индексов снизил p95 REST API с 2.5 до 0.8 секунды. Отдельно разработал сервис уведомлений о статусах платежей и перевёл обработку в асинхронный режим.</p>
                 </div>
               </div>
             </article>
 
-            <article class="timeline-row" data-rev="" data-delay="210">
-              <div class="timeline-date"><span data-ru="">Июль 2022 — Май 2024</span><span data-en="">Jul 2022 — May 2024</span></div>
+            <article class="timeline-row">
+              <div class="timeline-date">Июль 2022 — май 2024</div>
               <div class="timeline-body">
-                <a class="logo-chip" href="https://ciars.ai" target="_blank" rel="noopener" data-noselect="" aria-label="ЦИАРС"><img class="logo-chip-img logo-chip-img--contain" src="assets/icons/ciars.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text"><span data-ru="">Ци</span><span data-en="">Ci</span></span></a>
+                <a class="logo-chip" href="https://ciars.ai" target="_blank" rel="noopener" data-noselect="" aria-label="ЦИАРС"><img class="logo-chip-img logo-chip-img--contain" src="/assets/icons/ciars.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text">Ци</span></a>
                 <div class="min-w-0">
-                  <h3 class="timeline-title"><span data-ru="">Python-разработчик · <a class="link-u4" href="https://ciars.ai" target="_blank" rel="noopener">ЦИАРС</a></span><span data-en="">Python developer · <a class="link-u4" href="https://ciars.ai" target="_blank" rel="noopener">CIARS</a></span></h3>
-                  <p class="timeline-text"><span data-ru="">Проекты под заказчика: backend и аналитика системы мониторинга перевозок, ETL для аналитических моделей. Свёл 100 000 товарных позиций из B2B-каталогов к единой схеме. Для обучения OCR не хватало размеченных данных, поэтому написал генератор синтетических документов.</span><span data-en="">Client projects: backend and analytics for a freight monitoring system, ETL feeding analytical models. I reduced 100,000 product entries from B2B catalogs to a single schema. There wasn't enough labeled data to train OCR, so I wrote a synthetic document generator.</span></p>
+                  <h3 class="timeline-title">Python-разработчик · <a class="link-u4" href="https://ciars.ai" target="_blank" rel="noopener">ЦИАРС</a></h3>
+                  <p class="timeline-text">Проекты под заказчика: серверная часть и аналитика системы мониторинга перевозок, подготовка данных для аналитических моделей. Свёл 100 000 товарных позиций из B2B-каталогов к единой схеме. Для обучения OCR не хватало размеченных данных, поэтому написал генератор синтетических документов. Отдельно строил систему извлечения, преобразования и загрузки текстовых данных объёмом 1 TB+.</p>
                 </div>
               </div>
             </article>
           </div>
 
           <div class="edu-head" data-rev="">
-            <div class="eyebrow">04 — <span data-ru="">образование</span><span data-en="">education</span></div>
-            <h2 class="section-title-sm"><span data-ru="">Где учился</span><span data-en="">Where I studied</span></h2>
+            <div class="eyebrow">04 — образование</div>
+            <h2 class="section-title-sm">Где учился</h2>
           </div>
 
-          <div class="edu-grid" id="edu-grid" data-rev="">
+          <div class="edu-grid" id="edu-grid">
             <article class="card-edu">
               <div class="edu-years">2024 — 2028</div>
               <div class="edu-row">
-                <a class="logo-chip" href="https://www.fa.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Финансовый университет"><img class="logo-chip-img" src="assets/icons/fa.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text" style="--chip-fs:12.5px"><span data-ru="">Фин</span><span data-en="">Fin</span></span></a>
-                <h3 class="edu-title"><span data-ru=""><a class="link-u4" href="https://www.fa.ru" target="_blank" rel="noopener">Финансовый университет при Правительстве РФ</a></span><span data-en=""><a class="link-u4" href="https://www.fa.ru" target="_blank" rel="noopener">Financial University</a></span></h3>
+                <a class="logo-chip" href="https://www.fa.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Финансовый университет"><img class="logo-chip-img" src="/assets/icons/fa.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text" style="--chip-fs:12.5px">Фин</span></a>
+                <h3 class="edu-title"><a class="link-u4" href="https://www.fa.ru" target="_blank" rel="noopener">Финансовый университет при Правительстве РФ</a></h3>
               </div>
-              <p class="edu-text"><span data-ru="">Факультет информационных технологий и анализа больших данных. Прикладная информатика, направленность «Прикладные информационные системы в экономике и финансах». Учусь параллельно с работой.</span><span data-en="">Faculty of Information Technology and Big Data Analysis. Applied Informatics, track: Applied Information Systems in Economics and Finance. Studying alongside full-time work.</span></p>
+              <p class="edu-text">Факультет информационных технологий и анализа больших данных. Прикладная информатика, направленность «Прикладные информационные системы в экономике и финансах». Учусь параллельно с работой.</p>
             </article>
 
             <article class="card-edu">
               <div class="edu-years">2020 — 2024</div>
               <div class="edu-row">
-                <a class="logo-chip" href="https://kip.fa.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Колледж информатики и программирования"><img class="logo-chip-img" src="assets/icons/fa.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text" style="--chip-fs:11.5px"><span data-ru="">КИП</span><span data-en="">CIP</span></span></a>
-                <h3 class="edu-title"><span data-ru=""><a class="link-u4" href="https://kip.fa.ru" target="_blank" rel="noopener">Колледж информатики и программирования Финансового университета при Правительстве РФ</a></span><span data-en=""><a class="link-u4" href="https://kip.fa.ru" target="_blank" rel="noopener">College of Informatics and Programming, Financial University</a></span></h3>
+                <a class="logo-chip" href="https://kip.fa.ru" target="_blank" rel="noopener" data-noselect="" aria-label="Колледж информатики и программирования"><img class="logo-chip-img" src="/assets/icons/fa.png" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="logo-chip-text" style="--chip-fs:11.5px">КИП</span></a>
+                <h3 class="edu-title"><a class="link-u4" href="https://kip.fa.ru" target="_blank" rel="noopener">Колледж информатики и программирования Финансового университета при Правительстве РФ</a></h3>
               </div>
-              <p class="edu-text"><span data-ru="">Программирование в компьютерных системах, квалификация «техник-программист». Здесь я начал писать на Python и отсюда пришёл на первую работу.</span><span data-en="">Programming in Computer Systems, qualification: software technician. Where I started writing Python, and where my first job came from.</span></p>
+              <p class="edu-text">Программирование в компьютерных системах, квалификация «техник-программист». Здесь я начал писать на Python и отсюда пришёл на первую работу.</p>
             </article>
           </div>
 
-          <a class="cv-link" data-rev="" href="https://cv.ferokuk.dev" target="_blank" rel="noopener"><span data-ru="">Резюме целиком</span><span data-en="">Full résumé</span> <span class="mono">cv.ferokuk.dev ↗</span></a>
+          <a class="cv-link" href="https://cv.ferokuk.dev" target="_blank" rel="noopener">Резюме целиком <span class="mono">cv.ferokuk.dev ↗</span></a>
         </div>
       </section>
 
       <section id="contact" class="section section-contact">
         <div class="contact-card" data-rev="">
-          <div class="contact-orb"></div>
+          <div class="contact-orb" aria-hidden="true"></div>
           <div class="contact-inner">
             <div class="min-w-0">
-              <div class="eyebrow eyebrow-contact">05 — <span data-ru="">связаться</span><span data-en="">contact</span></div>
-              <h2 class="contact-title"><span data-ru="">Рассмотрю предложения</span><span data-en="">Open to offers</span></h2>
-              <p class="contact-text"><span data-ru="">Москва, полная занятость. Открыт к удалённому и гибридному форматам. Со мной можно связаться по <a href="mailto:yaroslav@ferokuk.dev" class="link-u">почте</a> или в <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="link-u">Telegram</a> — отвечаю в течение рабочего дня.</span><span data-en="">Moscow, full-time. Open to remote and hybrid formats. Reach me by <a href="mailto:yaroslav@ferokuk.dev" class="link-u">email</a> or on <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="link-u">Telegram</a> — I reply within one business day.</span></p>
+              <div class="eyebrow eyebrow-contact">05 — связаться</div>
+              <h2 class="contact-title">Не ищу активно, но открыт к диалогу</h2>
+              <p class="contact-text">Сейчас не нахожусь в активном поиске, но открыт к точечным предложениям. Москва; удалённый и гибридный формат. Проще всего написать по <a href="mailto:yaroslav@ferokuk.dev" class="link-u">почте</a> или в <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="link-u">Telegram</a>.</p>
             </div>
             <div class="contact-links">
-              <a href="mailto:yaroslav@ferokuk.dev" class="contact-btn">yaroslav@ferokuk.dev <span class="mono">→</span></a>
-              <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="contact-ghost">Telegram <span class="mono-muted">@ferokuk ↗</span></a>
-              <a href="https://github.com/ferokuk" target="_blank" rel="noopener" class="contact-ghost">GitHub <span class="mono-muted">/ferokuk ↗</span></a>
-              <a href="https://linkedin.com/in/ferokuk" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" class="contact-ghost is-hidden">LinkedIn <span class="mono-muted">↗</span></a>
+              <a href="mailto:yaroslav@ferokuk.dev" class="contact-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>yaroslav@ferokuk.dev <span class="mono">→</span></a>
+              <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="contact-ghost"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>Telegram <span class="mono-muted">@ferokuk ↗</span></a>
+              <a href="https://github.com/ferokuk" target="_blank" rel="noopener" class="contact-ghost"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>GitHub <span class="mono-muted">/ferokuk ↗</span></a>
             </div>
           </div>
         </div>
@@ -553,9 +574,13 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <span>© 2026 ferokuk.dev</span>
-        <a href="https://cv.ferokuk.dev" target="_blank" rel="noopener" class="footer-link"><span data-ru="">Резюме — cv.ferokuk.dev</span><span data-en="">Résumé — cv.ferokuk.dev</span></a>
-        <a href="#top" class="footer-link"><span data-ru="">Наверх ↑</span><span data-en="">Back to top ↑</span></a>
+        <a href="https://cv.ferokuk.dev" target="_blank" rel="noopener" class="footer-link">Резюме — cv.ferokuk.dev</a>
+        <a href="#top" class="footer-link">Наверх ↑</a>
       </div>
+      <p class="footer-note">
+        Сайт использует файлы cookie и сервис Яндекс Метрика для сбора обезличенной статистики посещений. Продолжая пользоваться сайтом, вы соглашаетесь с обработкой этих данных.
+
+      </p>
     </footer>
   </div>
 </body>

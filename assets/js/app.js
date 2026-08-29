@@ -4,8 +4,7 @@
   const CONFIG = {
     accent: '#E8FF4D',
     accentAlt: '#52A8FF',
-    langKey: 'ferokuk.lang',
-    defaultLang: 'ru'
+    ymId: 112122572
   };
 
   const root = document.getElementById('app');
@@ -20,88 +19,50 @@
     d.setProperty('--acc2', CONFIG.accentAlt || '#52A8FF');
   };
 
-  const readLang = () => {
-    const saved = (() => { try { return localStorage.getItem(CONFIG.langKey); } catch (e) { return null; } })();
-    return (saved === 'en' || saved === 'ru') ? saved : CONFIG.defaultLang;
-  };
+  let revealObserver = null;
+  const revealTimers = new Set();
+  let revealItems = [];
 
-  const langButtons = {};
-
-  const applyLang = (l) => {
-    if (root) root.setAttribute('data-l', l);
-    document.documentElement.setAttribute('lang', l);
-    // the two titles live on #app as data-title-ru / data-title-en
-    const title = root && root.getAttribute('data-title-' + l);
-    if (title) document.title = title;
-    Object.keys(langButtons).forEach(k => {
-      if (langButtons[k]) langButtons[k].setAttribute('aria-pressed', String(k === l));
+  const finishReveals = () => {
+    if (revealObserver) { revealObserver.disconnect(); revealObserver = null; }
+    revealTimers.forEach(clearTimeout);
+    revealTimers.clear();
+    revealItems.forEach(el => {
+      el.dataset.revDone = '1';
+      el.style.transition = 'none';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.willChange = 'auto';
     });
   };
-
-  const setLang = (l) => {
-    applyLang(l);
-    try { localStorage.setItem(CONFIG.langKey, l); } catch (e) {}
-  };
-
-  const initLang = () => {
-    ['ru', 'en'].forEach(l => {
-      const el = document.getElementById('lang-' + l) || q('[data-lb="' + l + '"]');
-      if (!el) return;
-      langButtons[l] = el;
-      el.addEventListener('click', () => setLang(l));
-    });
-    applyLang(readLang());
-  };
-
-  let io = null;
-  let sweep = null;
-  let scrollBound = false;
-  let safety = null;
 
   const initReveal = (reduce) => {
-    const scope = root || document;
-    const items = all('[data-rev]', scope);
+    revealItems = all('[data-rev]', root || document);
     if (reduce || !('IntersectionObserver' in window)) return;
-
-    items.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translate3d(0,26px,0)';
-      el.style.willChange = 'opacity, transform';
-    });
 
     const show = el => {
       if (el.dataset.revDone) return;
       el.dataset.revDone = '1';
-      const d = parseInt(el.getAttribute('data-delay') || '0', 10);
-      el.style.transition = 'opacity .75s cubic-bezier(.2,.8,.2,1) ' + d + 'ms, transform .75s cubic-bezier(.2,.8,.2,1) ' + d + 'ms';
+      el.style.transition = 'opacity 450ms cubic-bezier(.2,.8,.2,1), transform 450ms cubic-bezier(.2,.8,.2,1)';
       el.style.opacity = '1';
       el.style.transform = 'translate3d(0,0,0)';
-      setTimeout(() => { el.style.willChange = 'auto'; }, 900 + d);
-      if (io) io.unobserve(el);
+      const id = setTimeout(() => {
+        revealTimers.delete(id);
+        el.style.willChange = 'auto';
+      }, 500);
+      revealTimers.add(id);
+      if (revealObserver) revealObserver.unobserve(el);
     };
 
-    sweep = () => {
-      let pending = 0;
-      items.forEach(el => {
-        if (el.dataset.revDone) return;
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) show(el); else pending++;
-      });
-      if (!pending && scrollBound) {
-        window.removeEventListener('scroll', sweep);
-        scrollBound = false;
-      }
-    };
-
-    io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) show(e.target); });
+    revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) show(entry.target); });
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
-    items.forEach(el => io.observe(el));
-
-    requestAnimationFrame(sweep);
-    window.addEventListener('scroll', sweep, { passive: true });
-    window.addEventListener('resize', sweep, { passive: true });
-    scrollBound = true;
-    safety = setTimeout(() => { items.forEach(show); }, 2200);
+    revealItems.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translate3d(0,10px,0)';
+      el.style.willChange = 'opacity, transform';
+      revealObserver.observe(el);
+    });
   };
 
   const EVENTS = [
@@ -126,22 +87,69 @@
   };
 
   let pp = null;
-  let timers = [];
-  let rafs = [];
-  let sparks = [];
-  let loadTimer = null;
-  let errTimer = null;
-  let burstTimer = null;
+  const timers = new Set();
+  const activeRafs = new Set();
+  const animations = new Set();
+  let pipelineObserver = null;
+  let motionQuery = null;
+  let pipelineToggle = null;
+  let running = false;
+  let pipelineVisible = false;
+  let manuallyPaused = false;
+  let reducedMotion = false;
+  let pagePresent = true;
+  let destroyed = false;
   let errBurst = false;
   let evIdx = 0;
   let phase = 0.6;
   let load = 0.38;
 
-  const at = (ms, fn) => { timers.push(setTimeout(fn, ms)); };
-  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+  // Every pipeline timer and frame is removed from its registry on completion.
+  // The same scheduler owns telemetry, burst recovery and event choreography.
+  const at = (ms, fn) => {
+    if (!running) return null;
+    const id = setTimeout(() => {
+      timers.delete(id);
+      if (running) fn();
+    }, ms);
+    timers.add(id);
+    return id;
+  };
+
+  const trackedRaf = callback => {
+    const id = requestAnimationFrame(ts => {
+      activeRafs.delete(id);
+      if (running) callback(ts);
+    });
+    activeRafs.add(id);
+    return id;
+  };
+
+  const cancelRaf = id => {
+    if (id == null) return;
+    cancelAnimationFrame(id);
+    activeRafs.delete(id);
+  };
+
+  const playAnimation = (el, frames, options, onDone) => {
+    if (!running || !el || typeof el.animate !== 'function') {
+      if (onDone) onDone();
+      return null;
+    }
+    const animation = el.animate(frames, options);
+    const done = () => {
+      animations.delete(animation);
+      if (onDone) onDone();
+    };
+    animation.onfinish = done;
+    animation.oncancel = done;
+    animations.add(animation);
+    return animation;
+  };
+
   const speed = () => 1 - Math.min(0.32, load * 0.32);
 
-  const startPipeline = (reduce) => {
+  const initPipeline = () => {
     if (!panel) return;
     const k = key => panel.querySelector('[data-k="' + key + '"]');
     pp = {
@@ -152,22 +160,148 @@
       bus: q('.pl-bus', panel),
       bar: k('bar'), rps: k('rps'), p99: k('p99'), err: k('err')
     };
-    timers = [];
-    rafs = [];
-    sparks = [];
-    evIdx = 0;
-    phase = 0.6;
-    load = 0.38;
-    setPods(4);
-    if (reduce) {
-      setOutcome('verdict', EVENTS[1]);
-      return;
+    pipelineToggle = document.getElementById('pipeline-toggle');
+    if (pipelineToggle) pipelineToggle.addEventListener('click', togglePipeline);
+    renderStaticState();
+    if ('IntersectionObserver' in window) {
+      pipelineObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.target !== panel) return;
+          pipelineVisible = entry.isIntersecting && entry.intersectionRatio > 0;
+          syncPipeline();
+        });
+      }, { threshold: 0 });
+      pipelineObserver.observe(panel);
+    } else {
+      window.addEventListener('scroll', updatePipelineVisibility, { passive: true });
+      window.addEventListener('resize', updatePipelineVisibility, { passive: true });
     }
+    updatePipelineVisibility();
+  };
+
+  const renderStaticState = () => {
+    if (!pp) return;
+    const ev = EVENTS[1];
+    if (pp.evName) pp.evName.textContent = ev.name;
+    if (pp.evId) pp.evId.textContent = ev.id;
+    animNum(pp.score, ev.score, 0, 2);
+    if (pp.score) pp.score.style.color = '#F1F3EC';
+    applyLoad();
+    animNum(pp.err, 0.03, 0, 2);
+    if (pp.err) pp.err.style.color = cssv('--acc');
+    setOutcome('verdict', ev);
+  };
+
+  const startPipeline = () => {
+    if (!pp || running || destroyed) return;
+    running = true;
+    errBurst = false;
     applyLoad();
     tickLoad();
     applyErr();
     tickErr();
     runEvent();
+  };
+
+  const stopPipeline = () => {
+    running = false;
+    timers.forEach(clearTimeout);
+    timers.clear();
+    activeRafs.forEach(cancelAnimationFrame);
+    activeRafs.clear();
+    Array.from(animations).forEach(animation => animation.cancel());
+    animations.clear();
+    if (!pp) return;
+    [pp.rps, pp.p99, pp.err, pp.podN, pp.score].forEach(el => { if (el) el._raf = null; });
+    all('.pl-spark', panel).forEach(el => el.remove());
+    all('[data-dot], [data-dot2], [data-fill]', panel).forEach(el => {
+      el.style.opacity = '0';
+    });
+    [pp.gw, pp.ev, pp.af, pp.kafka, pp.ch, pp.cq, pp.ops].forEach(el => {
+      if (!el) return;
+      el.style.borderColor = BC;
+      el.style.boxShadow = 'none';
+    });
+    pp.srcs.forEach(el => {
+      el.style.borderColor = 'rgba(241,243,236,.1)';
+      el.style.boxShadow = 'none';
+      el.style.color = '#8B9188';
+    });
+    errBurst = false;
+    renderStaticState();
+    // Covers CSS pulses/transitions as well as JS-created animations. The state
+    // selector disables their styles while stopped, and re-enables them on resume.
+    if (typeof panel.getAnimations === 'function') {
+      panel.getAnimations({ subtree: true }).forEach(animation => animation.cancel());
+    }
+  };
+
+  const syncPipeline = () => {
+    if (!panel) return;
+    const state = destroyed || !pagePresent ? 'stopped'
+      : reducedMotion ? 'reduced'
+      : manuallyPaused ? 'paused'
+      : document.hidden ? 'hidden'
+      : !pipelineVisible ? 'offscreen' : 'running';
+    panel.dataset.pipelineState = state;
+    if (pipelineToggle) {
+      pipelineToggle.setAttribute('aria-pressed', String(manuallyPaused));
+      pipelineToggle.disabled = reducedMotion;
+      const label = reducedMotion ? pipelineToggle.dataset.reducedLabel
+        : manuallyPaused ? pipelineToggle.dataset.resumeLabel : pipelineToggle.dataset.pauseLabel;
+      pipelineToggle.setAttribute('aria-label', label);
+      pipelineToggle.title = label;
+    }
+    if (state === 'running') startPipeline();
+    else stopPipeline();
+  };
+
+  const updatePipelineVisibility = () => {
+    if (!panel) return;
+    const rect = panel.getBoundingClientRect();
+    pipelineVisible = rect.bottom > 0 && rect.top < window.innerHeight
+      && rect.right > 0 && rect.left < window.innerWidth;
+    syncPipeline();
+  };
+
+  const togglePipeline = () => {
+    manuallyPaused = !manuallyPaused;
+    syncPipeline();
+  };
+
+  const initDemoInfo = () => {
+    const info = q('.demo-info');
+    if (!info) return;
+    const trigger = q('.demo-trigger', info);
+    const setOpen = open => {
+      info.dataset.open = String(open);
+      trigger.setAttribute('aria-expanded', String(open));
+    };
+    setOpen(false);
+    info.addEventListener('mouseenter', () => setOpen(true));
+    info.addEventListener('mouseleave', () => {
+      if (!info.contains(document.activeElement)) setOpen(false);
+    });
+    trigger.addEventListener('focus', () => setOpen(true));
+    trigger.addEventListener('click', () => setOpen(true));
+    info.addEventListener('focusout', event => {
+      if (!info.contains(event.relatedTarget)) setOpen(false);
+    });
+    document.addEventListener('pointerdown', event => {
+      if (!info.contains(event.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+  };
+
+  const onVisibilityChange = () => updatePipelineVisibility();
+  const onPageHide = () => { pagePresent = false; syncPipeline(); };
+  const onPageShow = () => { pagePresent = true; updatePipelineVisibility(); };
+  const onMotionChange = event => {
+    reducedMotion = event.matches;
+    if (reducedMotion) finishReveals();
+    syncPipeline();
   };
 
   const tickLoad = () => {
@@ -176,9 +310,9 @@
       const target = 0.5 + 0.4 * Math.sin(phase) + (Math.random() - 0.5) * 0.1;
       load += (Math.max(0.06, Math.min(1, target)) - load) * 0.24;
       applyLoad();
-      loadTimer = setTimeout(step, 1300);
+      at(1300, step);
     };
-    loadTimer = setTimeout(step, 900);
+    at(900, step);
   };
 
   const applyLoad = () => {
@@ -201,16 +335,16 @@
   };
 
   const tickErr = () => {
-    const wobble = () => { applyErr(); errTimer = setTimeout(wobble, 2200 + Math.random() * 900); };
-    errTimer = setTimeout(wobble, 1800);
+    const wobble = () => { applyErr(); at(2200 + Math.random() * 900, wobble); };
+    at(1800, wobble);
     const burst = () => {
       errBurst = true;
       applyErr();
-      at(1000, () => applyErr());
+      at(1000, applyErr);
       at(2200, () => { errBurst = false; applyErr(); });
-      burstTimer = setTimeout(burst, 30000 + Math.random() * 10000);
+      at(30000 + Math.random() * 10000, burst);
     };
-    burstTimer = setTimeout(burst, 24000 + Math.random() * 9000);
+    at(24000 + Math.random() * 9000, burst);
   };
 
   const setPods = (n) => {
@@ -226,19 +360,24 @@
   const animNum = (el, to, dur, dec) => {
     if (!el) return;
     const from = parseFloat(el.dataset.v != null ? el.dataset.v : to);
-    if (el._raf) cancelAnimationFrame(el._raf);
-    if (!isFinite(from) || Math.abs(to - from) < 0.0001) { el.dataset.v = to; el.textContent = to.toFixed(dec); return; }
+    cancelRaf(el._raf);
+    el._raf = null;
+    if (!running || dur <= 0 || !isFinite(from) || Math.abs(to - from) < 0.0001) {
+      el.dataset.v = to;
+      el.textContent = to.toFixed(dec);
+      return;
+    }
     const t0 = performance.now();
     const tick = now => {
+      el._raf = null;
       const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
       const v = from + (to - from) * e;
       el.textContent = v.toFixed(dec);
       el.dataset.v = v;
-      if (k < 1) { el._raf = requestAnimationFrame(tick); rafs.push(el._raf); }
-      else { el.dataset.v = to; el._raf = null; }
+      if (k < 1) el._raf = trackedRaf(tick);
+      else el.dataset.v = to;
     };
-    el._raf = requestAnimationFrame(tick);
-    rafs.push(el._raf);
+    el._raf = trackedRaf(tick);
   };
 
   const glow = (el, color, hold) => {
@@ -257,14 +396,14 @@
     dot.style.background = color;
     dot.style.boxShadow = ghost ? '0 0 8px ' + color : '0 0 12px ' + color;
     if (!ghost && fill) fill.style.background = 'color-mix(in oklab, ' + color + ' 60%, transparent)';
-    dot.animate([
+    playAnimation(dot, [
       { top: '-4px', opacity: 0 },
       { top: '0px', opacity: 1, offset: 0.12 },
       { top: 'calc(100% - 8px)', opacity: 1, offset: 0.88 },
       { top: 'calc(100% - 4px)', opacity: 0 }
     ], { duration: dur, easing: EASE });
     if (ghost || !fill) return;
-    fill.animate([
+    playAnimation(fill, [
       { transform: 'scaleY(0)', opacity: 1 },
       { transform: 'scaleY(1)', opacity: 1, offset: 0.72 },
       { transform: 'scaleY(1)', opacity: 0 }
@@ -275,21 +414,13 @@
   // then vertical drops into the sinks. travel() only walks the centred connector, so a dot
   // has to follow the bracket by hand to reach a node instead of jumping to it.
   const spark = (fan, frames, color, dur) => {
-    if (!fan) return;
+    if (!fan || !running) return;
     const d = document.createElement('span');
     d.className = 'pl-spark';
     d.style.background = color;
     d.style.boxShadow = '0 0 12px ' + color;
     fan.appendChild(d);
-    const anim = d.animate(frames, { duration: dur, easing: EASE });
-    const clean = () => {
-      if (d.parentNode) d.parentNode.removeChild(d);
-      const i = sparks.indexOf(anim);
-      if (i !== -1) sparks.splice(i, 1);
-    };
-    anim.onfinish = clean;
-    anim.oncancel = clean;
-    sparks.push(anim);
+    playAnimation(d, frames, { duration: dur, easing: EASE }, () => d.remove());
   };
 
   // Measure the run down the spine and the turn-off into one sink. Read from live
@@ -347,7 +478,7 @@
     pp.tracks.forEach((t, i) => {
       const d = t.querySelector('[data-dot]');
       if (!d) return;
-      at(i * 130, () => d.animate([
+      at(i * 130, () => playAnimation(d, [
         { left: '0px', opacity: 0 },
         { left: '2px', opacity: 1, offset: 0.14 },
         { left: 'calc(100% - 5px)', opacity: 1, offset: 0.86 },
@@ -365,7 +496,7 @@
       o.style.background = 'rgba(10,11,14,.4)';
       o.style.borderColor = 'rgba(241,243,236,.1)';
       o.style.boxShadow = 'none';
-      t.style.color = '#6E756D';
+      t.style.color = '#777E76';
       t.textContent = 'awaiting event';
       return;
     }
@@ -380,8 +511,8 @@
       ? '\u2713 APPROVED \u00B7 ' + ev.ms + ' ms'
       : (ev.v === 'review' ? '\u25A0 REVIEW \u00B7 ' + ev.reason : '\u2715 FLAGGED \u00B7 ' + ev.reason);
     void o.offsetWidth;
-    if (ev.v === 'review') o.style.animation = 'brth 1.5s ease-in-out 2';
-    if (ev.v === 'flagged') o.style.animation = 'shk .32s ' + EASE + ' 1';
+    if (running && ev.v === 'review') o.style.animation = 'brth 1.5s ease-in-out 2';
+    if (running && ev.v === 'flagged') o.style.animation = 'shk .32s ' + EASE + ' 1';
   };
 
   const nextEvent = () => {
@@ -393,8 +524,7 @@
   };
 
   const runEvent = () => {
-    if (!pp) return;
-    if (document.hidden) { at(800, () => runEvent()); return; }
+    if (!pp || !running) return;
     const s = speed();
     const leg = Math.round(340 * s * DOT_DUR), hold = Math.round(620 * s);
     const ev = nextEvent();
@@ -445,26 +575,26 @@
 
     t += Math.max(auditDur, targetDur);
     t += Math.round(1500 * s);
-    at(t, () => { clearTimers(); runEvent(); });
+    at(t, runEvent);
   };
 
   const destroy = () => {
-    if (loadTimer) { clearTimeout(loadTimer); loadTimer = null; }
-    if (errTimer) { clearTimeout(errTimer); errTimer = null; }
-    if (burstTimer) { clearTimeout(burstTimer); burstTimer = null; }
-    clearTimers();
-    rafs.forEach(id => cancelAnimationFrame(id));
-    rafs = [];
-    sparks.forEach(a => { try { a.cancel(); } catch (e) {} });
-    sparks = [];
-    if (io) { io.disconnect(); io = null; }
-    if (safety) { clearTimeout(safety); safety = null; }
-    if (sweep) {
-      window.removeEventListener('scroll', sweep);
-      window.removeEventListener('resize', sweep);
-      scrollBound = false;
-      sweep = null;
+    destroyed = true;
+    syncPipeline();
+    if (pipelineObserver) { pipelineObserver.disconnect(); pipelineObserver = null; }
+    if (pipelineToggle) pipelineToggle.removeEventListener('click', togglePipeline);
+    window.removeEventListener('scroll', updatePipelineVisibility);
+    window.removeEventListener('resize', updatePipelineVisibility);
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    window.removeEventListener('pagehide', onPageHide);
+    window.removeEventListener('pageshow', onPageShow);
+    if (motionQuery) {
+      if (motionQuery.removeEventListener) motionQuery.removeEventListener('change', onMotionChange);
+      else motionQuery.removeListener(onMotionChange);
     }
+    finishReveals();
+    if (goalIo) { goalIo.disconnect(); goalIo = null; }
+    if (engagedTimer) { clearTimeout(engagedTimer); engagedTimer = null; }
     pp = null;
   };
 
@@ -476,13 +606,84 @@
     });
   };
 
+  const YM_SECTIONS = ['work', 'stack', 'path', 'contact'];
+
+  let goalIo = null;
+  let goalDepth = -1;
+  let engagedTimer = null;
+
+  const goal = (name) => {
+    if (typeof window.ym === 'function') window.ym(CONFIG.ymId, 'reachGoal', name);
+  };
+
+  const reachSection = (id) => {
+    const idx = YM_SECTIONS.indexOf(id);
+    if (idx < 0 || idx <= goalDepth) return;
+    for (let i = goalDepth + 1; i <= idx; i++) goal('section_' + YM_SECTIONS[i]);
+    goalDepth = idx;
+  };
+
+  const goalFor = (el) => {
+    const href = el.getAttribute('href') || '';
+    if (href.indexOf('mailto:') === 0) return 'contact_email';
+    if (href.indexOf('t.me/') > -1) return 'contact_telegram';
+    if (href.indexOf('cv.ferokuk.dev') > -1) return 'cv_open';
+    if (href.indexOf('github.com') > -1) return 'contact_github';
+    if (el.id === 'lang-en') return 'lang_en';
+    if (el.id === 'lang-ru') return 'lang_ru';
+    if (el.classList.contains('btn-secondary')) return 'cta_contact';
+    if (el.classList.contains('btn-primary')) return 'cta_work';
+    return null;
+  };
+
+  const initGoals = () => {
+    if (typeof window.ym !== 'function') return;
+
+    window.ym(CONFIG.ymId, 'params', { page_type: 'landing', lang: document.documentElement.lang });
+
+    document.addEventListener('click', (e) => {
+      const el = e.target && e.target.closest ? e.target.closest('a, button') : null;
+      if (!el) return;
+      const name = goalFor(el);
+      if (name) goal(name);
+    }, true);
+
+    document.addEventListener('copy', () => {
+      const sel = String(window.getSelection() || '');
+      if (sel.indexOf('@ferokuk.dev') > -1) goal('email_copied');
+    });
+
+    if ('IntersectionObserver' in window) {
+      goalIo = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          reachSection(en.target.id);
+          if (goalIo) goalIo.unobserve(en.target);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+      YM_SECTIONS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) goalIo.observe(el);
+      });
+    }
+
+    engagedTimer = setTimeout(() => goal('engaged_60s'), 60000);
+  };
+
   const boot = () => {
     applyTheme();
-    initLang();
     initLogos();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    startPipeline(reduce);
-    initReveal(reduce);
+    initGoals();
+    motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    reducedMotion = motionQuery.matches;
+    if (motionQuery.addEventListener) motionQuery.addEventListener('change', onMotionChange);
+    else motionQuery.addListener(onMotionChange);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    window.addEventListener('pagehide', onPageHide);
+    window.addEventListener('pageshow', onPageShow);
+    initPipeline();
+    initDemoInfo();
+    initReveal(reducedMotion);
   };
 
   if (document.readyState === 'loading') {
@@ -491,7 +692,5 @@
     boot();
   }
 
-  window.addEventListener('pagehide', destroy);
-
-  window.ferokuk = { CONFIG, applyTheme, setLang, runGhost, destroy };
+  window.ferokuk = { CONFIG, applyTheme, runGhost, destroy };
 })();
