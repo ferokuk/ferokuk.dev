@@ -93,6 +93,8 @@
   let pipelineObserver = null;
   let motionQuery = null;
   let pipelineToggle = null;
+  let pipelineDisclosure = null;
+  let compactQuery = null;
   let running = false;
   let pipelineVisible = false;
   let manuallyPaused = false;
@@ -148,6 +150,21 @@
   };
 
   const speed = () => 1 - Math.min(0.32, load * 0.32);
+
+  const onCompactChange = () => {
+    pipelineDisclosure.open = !compactQuery.matches;
+    updatePipelineVisibility();
+  };
+
+  const initPipelineDisclosure = () => {
+    pipelineDisclosure = q('.pipeline-disclosure');
+    if (!pipelineDisclosure) return;
+    compactQuery = window.matchMedia('(max-width: 899px)');
+    pipelineDisclosure.open = !compactQuery.matches;
+    pipelineDisclosure.addEventListener('toggle', updatePipelineVisibility);
+    if (compactQuery.addEventListener) compactQuery.addEventListener('change', onCompactChange);
+    else compactQuery.addListener(onCompactChange);
+  };
 
   const initPipeline = () => {
     if (!panel) return;
@@ -242,7 +259,7 @@
       : reducedMotion ? 'reduced'
       : manuallyPaused ? 'paused'
       : document.hidden ? 'hidden'
-      : !pipelineVisible ? 'offscreen' : 'running';
+      : !pipelineVisible || (pipelineDisclosure && !pipelineDisclosure.open) ? 'offscreen' : 'running';
     panel.dataset.pipelineState = state;
     if (pipelineToggle) {
       pipelineToggle.setAttribute('aria-pressed', String(manuallyPaused));
@@ -583,6 +600,11 @@
     syncPipeline();
     if (pipelineObserver) { pipelineObserver.disconnect(); pipelineObserver = null; }
     if (pipelineToggle) pipelineToggle.removeEventListener('click', togglePipeline);
+    if (pipelineDisclosure) pipelineDisclosure.removeEventListener('toggle', updatePipelineVisibility);
+    if (compactQuery) {
+      if (compactQuery.removeEventListener) compactQuery.removeEventListener('change', onCompactChange);
+      else compactQuery.removeListener(onCompactChange);
+    }
     window.removeEventListener('scroll', updatePipelineVisibility);
     window.removeEventListener('resize', updatePipelineVisibility);
     document.removeEventListener('visibilitychange', onVisibilityChange);
@@ -681,6 +703,7 @@
     document.addEventListener('visibilitychange', onVisibilityChange);
     window.addEventListener('pagehide', onPageHide);
     window.addEventListener('pageshow', onPageShow);
+    initPipelineDisclosure();
     initPipeline();
     initDemoInfo();
     initReveal(reducedMotion);
