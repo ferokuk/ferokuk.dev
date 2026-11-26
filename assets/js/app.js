@@ -50,7 +50,7 @@
   };
   const NODE_COPY = {
     en: {
-      src: ['external system', 'An external system. It drops files with invoices from clinics and labs to be checked.'],
+      src: ['source', 'An external system. It drops files with invoices from clinics and labs to be checked.'],
       gw: ['intake', 'A Django service. It takes the invoice files and queues them for processing.'],
       rules: ['antifraud · step 1', 'Rules. Celery workers check the invoice against antifraud rules based on Ministry of Health clinical guidelines.'],
       enrich: ['antifraud · step 2', 'Enrichment. Adds the data scoring needs from PostgreSQL and Redis to the invoice.'],
@@ -61,7 +61,7 @@
       fr: ['outcome', 'An invoice with signs of fraud is caught automatically, before payment.']
     },
     ru: {
-      src: ['внешняя система', 'Внешняя система. Кладёт файлы со счетами клиник и лабораторий на проверку.'],
+      src: ['источник', 'Внешняя система. Кладёт файлы со счетами клиник и лабораторий на проверку.'],
       gw: ['приём счетов', 'Сервис на Django. Принимает файлы со счетами и ставит их в обработку.'],
       rules: ['антифрод · шаг 1', 'Правила. Celery-воркеры проверяют счёт по антифрод-правилам на базе клинических рекомендаций Минздрава.'],
       enrich: ['антифрод · шаг 2', 'Обогащение. Добавляет к счёту данные из PostgreSQL и Redis, нужные для скоринга.'],
