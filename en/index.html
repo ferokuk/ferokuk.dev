@@ -25,10 +25,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=2">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=27">
   <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <script src="/assets/vendor/three.min.js" defer></script>
-  <script src="/assets/js/app.js?v=2" defer></script>
+  <script src="/assets/js/app.js?v=27" defer></script>
   <link rel="alternate" hreflang="ru" href="https://ferokuk.dev/">
   <link rel="alternate" hreflang="en" href="https://ferokuk.dev/en/">
   <link rel="alternate" hreflang="x-default" href="https://ferokuk.dev/">
@@ -64,18 +64,22 @@
 
   <header class="top">
     <a href="#top" class="brand">ferokuk<span>.dev</span></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#work" class="nav-a" data-nav="work">Projects</a>
-      <a href="#stack" class="nav-a" data-nav="stack">Stack</a>
-      <a href="#path" class="nav-a" data-nav="path">Experience</a>
-      <a href="#contact" class="nav-a" data-nav="contact">Contact</a>
-    </nav>
-    <div class="top-tools">
-      <a id="lang-ru" href="/" hreflang="ru" lang="ru" class="hbtn fx" aria-label="Русская версия">RU</a>
-      <button type="button" class="hbtn fx" data-act="theme">Light</button>
-      <button type="button" class="hbtn fx" data-act="calm">Less motion</button>
-      <a href="https://cv.ferokuk.dev" class="btn-cv">CV ↗</a>
+    <a href="/" hreflang="ru" lang="ru" class="hbtn fx lang-m" aria-label="Русская версия" data-goal="lang_ru">RU</a>
+    <button type="button" class="hbtn fx menu-btn" data-menu aria-label="Menu" aria-expanded="false" aria-controls="top-menu"><svg class="i-m" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="top-menu" id="top-menu">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#work" class="nav-a" data-nav="work">Projects</a>
+        <a href="#stack" class="nav-a" data-nav="stack">Stack</a>
+        <a href="#path" class="nav-a" data-nav="path">Experience</a>
+        <a href="#contact" class="nav-a" data-nav="contact">Contact</a>
+      </nav>
+      <div class="top-tools">
+        <a id="lang-ru" href="/" hreflang="ru" lang="ru" class="hbtn fx" aria-label="Русская версия">RU</a>
+        <button type="button" class="hbtn fx" data-act="theme">Light</button>
+        <button type="button" class="hbtn fx" data-act="calm">Less motion</button>
+      </div>
     </div>
+    <a href="https://cv.ferokuk.dev/en/" target="_blank" rel="noopener" class="btn-cv">CV ↗</a>
   </header>
 
   <main id="main" tabindex="-1">
@@ -84,34 +88,16 @@
       <div class="hero-canvas"><canvas data-ref="canvasRef"></canvas></div>
       <div class="hero-labels" data-ref="labelsRef"></div>
 
-      <div class="hero-bar">
-        <button type="button" class="btn-hide" data-act="explore" data-hero-hide hidden><span aria-hidden="true">←</span><span>Hide the diagram</span></button>
-        <div class="seg" role="group" aria-label="Diagram">
-          <button type="button" data-scene="fraud" aria-pressed="true">Pipeline</button>
-          <button type="button" data-scene="review" aria-pressed="false">AI reviewer</button>
-        </div>
-        <div class="hud">
-          <div class="hud-t"><span class="hud-dot"></span><span data-hud="t">traffic</span></div>
-          <div class="hud-c">
-            <div class="hud-v"><span class="hud-k" data-hud="a">rps</span><span class="hud-n" data-ref="rpsRef">900</span></div>
-            <svg width="88" height="28" aria-hidden="true"><polyline data-ref="rpsSpark" points=""></polyline></svg>
-          </div>
-          <div class="hud-c">
-            <div class="hud-v"><span class="hud-k" data-hud="b">p99</span><span class="hud-n" data-ref="p99Ref">85 ms</span></div>
-            <svg width="88" height="28" aria-hidden="true"><polyline data-ref="p99Spark" points=""></polyline></svg>
-          </div>
-          <div class="hud-c">
-            <div class="hud-v"><span class="hud-k" data-hud="c">5xx</span><span class="hud-n" data-ref="errRef">0.02%</span></div>
-            <svg width="88" height="28" aria-hidden="true"><polyline class="warn" data-ref="errSpark" points=""></polyline></svg>
-          </div>
-        </div>
-      </div>
-
       <div class="hero-body">
         <div class="hero-text" data-hero-text>
           <div class="hero-meta">
-            <strong>ferokuk</strong><span>·</span><a href="https://github.com/ferokuk">GitHub</a><span>·</span><a href="https://t.me/ferokuk">Telegram</a>
+            <strong>ferokuk</strong><span>·</span><a href="https://github.com/ferokuk" target="_blank" rel="noopener">GitHub</a><span>·</span><a href="https://t.me/ferokuk" target="_blank" rel="noopener">Telegram</a>
           </div>
+          <ul class="hero-facts" aria-label="At a glance">
+            <li>Now at <span class="hf-ink">Sber</span></li>
+            <li>Moscow</li>
+            <li>open to remote or hybrid</li>
+          </ul>
           <h1>Python backend for fintech</h1>
           <p class="lead">I'm Yaroslav Gneushev, a Python backend engineer with 4+ years in fintech and insurance. I build APIs and event-driven systems and keep them running under load — from data models to monitoring and incident response.</p>
           <div class="cta">
@@ -121,6 +107,30 @@
           </div>
         </div>
         <div class="hero-slot" data-ref="slotRef"></div>
+      </div>
+
+      <div class="hero-bar">
+        <button type="button" class="btn-hide" data-act="explore" data-hero-hide hidden><span aria-hidden="true">←</span><span>Hide the diagram</span></button>
+        <div class="seg" role="group" aria-label="Diagram">
+          <button type="button" data-scene="review" aria-pressed="true">AI reviewer</button>
+          <button type="button" data-scene="fraud" aria-pressed="false">Pipeline</button>
+          <button type="button" data-scene="outbox" aria-pressed="false">Outbox</button>
+        </div>
+        <div class="hud">
+          <div class="hud-t"><span class="hud-dot"></span><span data-hud="t">reviews</span></div>
+          <div class="hud-c">
+            <div class="hud-v"><span class="hud-k" data-hud="a">queue</span><span class="hud-n" data-ref="rpsRef">0</span></div>
+            <svg width="88" height="28" aria-hidden="true"><polyline data-ref="rpsSpark" points=""></polyline></svg>
+          </div>
+          <div class="hud-c">
+            <div class="hud-v"><span class="hud-k" data-hud="b">step</span><span class="hud-n" data-ref="p99Ref">—</span></div>
+            <svg width="88" height="28" aria-hidden="true"><polyline data-ref="p99Spark" points=""></polyline></svg>
+          </div>
+          <div class="hud-c">
+            <div class="hud-v"><span class="hud-k" data-hud="c">tool_calls</span><span class="hud-n" data-ref="errRef">0</span></div>
+            <svg width="88" height="28" aria-hidden="true"><polyline class="warn" data-ref="errSpark" points=""></polyline></svg>
+          </div>
+        </div>
       </div>
 
       <div class="zoom">
@@ -139,9 +149,14 @@
               <button type="button" class="tip-x" data-act="close-tip" aria-label="Close">×</button>
             </div>
             <div class="tip-title" data-tip="title"></div>
-            <p class="tip-text" data-tip="text"></p>
+            <p class="tip-text" data-tip="text" aria-live="polite"></p>
             <div class="tip-foot">
               <span class="tip-ev">events</span><span class="tip-n" data-ref="nodeCountRef">0</span>
+            </div>
+            <div class="tip-nav" data-tour-nav hidden>
+              <button type="button" class="tip-prev" data-tour-go="-1" aria-label="Previous step">←</button>
+              <span class="tip-step" data-tour-step></span>
+              <button type="button" class="tip-next" data-tour-go="1"></button>
             </div>
           </div>
         </div>
@@ -150,36 +165,36 @@
 
     <section class="stats">
       <div class="stats-grid">
-        <div class="stat" data-reveal>
-          <div class="stat-co">SOGAZ</div>
+        <a class="stat" href="#p01" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>SOGAZ</span><span aria-hidden="true">·</span><span class="stat-src">P—01<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">+13%</div>
           <div class="stat-d">increase in the share of fraud detected automatically</div>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="stat-co">SOGAZ</div>
+        </a>
+        <a class="stat" href="#p02" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>SOGAZ</span><span aria-hidden="true">·</span><span class="stat-src">P—02<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">15+</div>
           <div class="stat-d">MRs go through automated first-pass review daily</div>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="stat-co">SOGAZ</div>
+        </a>
+        <a class="stat" href="#proof-mttd" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>SOGAZ</span><span aria-hidden="true">·</span><span class="stat-src">experience<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">60 → 5 min</div>
           <div class="stat-d">time from incident start to detection · MTTD</div>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="stat-co">AmPay</div>
+        </a>
+        <a class="stat" href="#p03" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>AmPay</span><span aria-hidden="true">·</span><span class="stat-src">P—03<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">hrs → sec</div>
           <div class="stat-d">analytics lag · down to tens of seconds</div>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="stat-co">AmPay</div>
+        </a>
+        <a class="stat" href="#proof-p95" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>AmPay</span><span aria-hidden="true">·</span><span class="stat-src">experience<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">−68%</div>
           <div class="stat-d">REST API p95 · 2.5 s → 0.8 s</div>
-        </div>
-        <div class="stat" data-reveal>
-          <div class="stat-co">CIARS</div>
+        </a>
+        <a class="stat" href="#proof-etl" data-reveal data-goal="stat_proof">
+          <div class="stat-co"><span>CIARS</span><span aria-hidden="true">·</span><span class="stat-src">experience<span aria-hidden="true"> ↓</span></span></div>
           <div class="stat-v">1 TB+</div>
           <div class="stat-d">of text processed by an ETL pipeline</div>
-        </div>
+        </a>
       </div>
       <div class="techline"><span>FastAPI</span><span>Django · DRF</span><span>PostgreSQL</span><span>Kafka</span><span>Celery</span><span>Redis</span><span>RabbitMQ</span><span>Kubernetes</span><span>LangGraph</span></div>
     </section>
@@ -189,23 +204,26 @@
       <h2 class="h2 h2-lead" data-reveal>Selected projects</h2>
       <p class="sec-lead" data-reveal>Commercial projects: my contributions, technical decisions and results.</p>
       <div class="cards">
-        <div class="card-wrap" data-reveal data-tilt>
-          <article class="card">
+        <div class="card-wrap" id="p01" data-reveal data-tilt>
+          <article class="card arch" data-arch="fraud">
             <div class="card-glow"></div>
+            <div class="arch-fx"></div>
             <div class="card-top">
               <span class="card-code"><span>P—01</span><span>·</span><a href="#exp-sogaz">SOGAZ</a></span>
               <span class="card-status">in production</span>
             </div>
             <h3 class="card-title">Health insurance antifraud</h3>
             <p class="card-text">The service checks invoices from 12,000 clinics and labs before payment. I implemented antifraud rules based on Ministry of Health clinical guidelines, built an ML scoring microservice in FastAPI and integrated it into invoice processing.</p>
+            <div class="card-flow" data-flow="p01" aria-hidden="true"></div>
             <div class="card-metric">
               <span class="metric-v">+13%</span>
               <span class="metric-t">increase in the share of fraud detected automatically</span>
             </div>
             <div class="tags"><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>Celery</span></div>
+            <button type="button" class="arch-btn" data-goal="arch_open"><span class="arch-dot"></span><span class="arch-label">Show the architecture on the diagram</span><span aria-hidden="true">↑</span></button>
           </article>
         </div>
-        <div class="card-wrap" data-reveal data-tilt>
+        <div class="card-wrap" id="p02" data-reveal data-tilt>
           <article class="card arch" data-arch="review">
             <div class="card-glow"></div>
             <div class="arch-fx"></div>
@@ -215,16 +233,17 @@
             </div>
             <h3 class="card-title">AI code reviewer</h3>
             <p class="card-text">I built a LangGraph agent with MCP servers and integrated it into CI/CD. It reviews merge requests for style, common defects and missing tests before human review. Code stays inside the corporate environment.</p>
+            <div class="card-flow" data-flow="p02" aria-hidden="true"></div>
             <div class="card-metric">
               <span class="metric-v">15+</span>
               <span class="metric-t">MRs go through automated first-pass review daily</span>
             </div>
             <div class="tags"><span>FastAPI</span><span>LangGraph</span><span>LangChain</span><span>MCP</span><span>FastMCP</span></div>
-            <button type="button" class="arch-btn"><span class="arch-dot"></span><span class="arch-label">Show the architecture on the diagram</span><span aria-hidden="true">↑</span></button>
+            <button type="button" class="arch-btn" data-goal="arch_open"><span class="arch-dot"></span><span class="arch-label">Show the architecture on the diagram</span><span aria-hidden="true">↑</span></button>
           </article>
         </div>
-        <div class="card-wrap" data-reveal data-tilt>
-          <article class="card arch" data-arch="fraud">
+        <div class="card-wrap" id="p03" data-reveal data-tilt>
+          <article class="card arch" data-arch="outbox">
             <div class="card-glow"></div>
             <div class="arch-fx"></div>
             <div class="card-top">
@@ -233,15 +252,16 @@
             </div>
             <h3 class="card-title">Streaming analytics with Kafka</h3>
             <p class="card-text">Reports lagged by hours and competed with transaction processing in PostgreSQL. I designed a Kafka analytics pipeline with a transactional outbox: events are stored alongside business data, then published to the queue. Data lag fell to tens of seconds.</p>
+            <div class="card-flow" data-flow="p03" aria-hidden="true"></div>
             <div class="card-metric">
               <span class="metric-v">hrs → sec</span>
               <span class="metric-t">analytics lag fell from hours to tens of seconds</span>
             </div>
             <div class="tags"><span>FastAPI</span><span>Kafka</span><span>RabbitMQ</span><span>Celery</span><span>PostgreSQL</span></div>
-            <button type="button" class="arch-btn"><span class="arch-dot"></span><span class="arch-label">Show the architecture on the diagram</span><span aria-hidden="true">↑</span></button>
+            <button type="button" class="arch-btn" data-goal="arch_open"><span class="arch-dot"></span><span class="arch-label">Show the architecture on the diagram</span><span aria-hidden="true">↑</span></button>
           </article>
         </div>
-        <div class="card-wrap" data-reveal data-tilt>
+        <div class="card-wrap" id="p04" data-reveal data-tilt>
           <article class="card">
             <div class="card-glow"></div>
             <div class="card-top">
@@ -250,6 +270,7 @@
             </div>
             <h3 class="card-title">ETL and freight monitoring</h3>
             <p class="card-text">I consolidated government registry records and PDFs into a common PostgreSQL schema and built APIs and dashboards with route graphs. The parser handles rate limits, retries and corrupted files.</p>
+            <div class="card-flow" data-flow="p04" aria-hidden="true"></div>
             <div class="card-metric">
               <span class="metric-v">50,000</span>
               <span class="metric-t">government registry documents normalized to one schema</span>
@@ -293,40 +314,55 @@
       <div id="exp-sber" class="row" data-reveal>
         <div class="row-period">September 2026 — present</div>
         <div class="row-main">
-          <a href="https://www.sber.ru" class="mono">Sb</a>
+          <a href="https://www.sber.ru" target="_blank" rel="noopener" class="mono">Sb</a>
           <div>
-            <h3 class="row-title">Python backend engineer · <a href="https://www.sber.ru">Sber</a></h3>
-            <p class="row-text">I've accepted an offer to join the team developing Sber's smart assistant for ATMs.</p>
+            <h3 class="row-title">Python backend engineer · <a href="https://www.sber.ru" target="_blank" rel="noopener">Sber</a></h3>
+            <p class="row-text row-lead">I've accepted an offer to join the team developing Sber's smart assistant for ATMs.</p>
           </div>
         </div>
       </div>
       <div id="exp-sogaz" class="row" data-reveal>
         <div class="row-period">July 2025 — September 2026</div>
         <div class="row-main">
-          <a href="https://www.sogaz.ru" class="mono">SO</a>
+          <a href="https://www.sogaz.ru" target="_blank" rel="noopener" class="mono">SO</a>
           <div>
-            <h3 class="row-title">Python backend engineer · <a href="https://www.sogaz.ru">SOGAZ</a></h3>
-            <p class="row-text">Built health insurance antifraud services and internal AI tools. I was responsible for design, development, deployment, monitoring and on-call support. Moving heavy operations to priority queues and rewriting problematic ORM queries reduced peak queue depth by up to a factor of 10. After I set up monitoring, the time from incident onset to detection fell from roughly 60 minutes to 5 minutes.</p>
+            <h3 class="row-title">Python backend engineer · <a href="https://www.sogaz.ru" target="_blank" rel="noopener">SOGAZ</a></h3>
+            <p class="row-text row-lead">Built health insurance antifraud services and internal AI tools.</p>
+            <ul class="row-text row-list" role="list">
+              <li>I was responsible for design, development, deployment, monitoring and on-call support.</li>
+              <li>Moving heavy operations to priority queues and rewriting problematic ORM queries reduced peak queue depth <b class="fig">by up to a factor of 10</b>.</li>
+              <li><span class="proof" id="proof-mttd">After I set up monitoring, the time from incident onset to detection fell <b class="fig">from roughly 60 minutes to 5&nbsp;minutes</b>.</span></li>
+            </ul>
           </div>
         </div>
       </div>
       <div id="exp-ampay" class="row" data-reveal>
         <div class="row-period">May 2024 — July 2025</div>
         <div class="row-main">
-          <a href="https://ampay.su" class="mono">Ap</a>
+          <a href="https://ampay.su" target="_blank" rel="noopener" class="mono">Ap</a>
           <div>
-            <h3 class="row-title">Python backend engineer · <a href="https://ampay.su">AmPay</a></h3>
-            <p class="row-text">Worked on the payment platform core: a merchant-facing REST API and transaction processing. I moved analytics to Kafka through a transactional outbox to reduce contention with PostgreSQL transaction processing. Data lag fell from hours to tens of seconds. SQL and index optimization reduced REST API p95 from 2.5 to 0.8 seconds. I also built a payment status notification service and moved processing to an asynchronous workflow.</p>
+            <h3 class="row-title">Python backend engineer · <a href="https://ampay.su" target="_blank" rel="noopener">AmPay</a></h3>
+            <p class="row-text row-lead">Worked on the payment platform core: a merchant-facing REST API and transaction processing.</p>
+            <ul class="row-text row-list" role="list">
+              <li>I moved analytics to Kafka through a transactional outbox to reduce contention with PostgreSQL transaction processing. Data lag fell <b class="fig">from hours to tens of seconds</b>.</li>
+              <li><span class="proof" id="proof-p95">SQL and index optimization reduced REST API p95 <b class="fig">from 2.5 to 0.8&nbsp;seconds</b>.</span></li>
+              <li>I also built a payment status notification service and moved processing to an asynchronous workflow.</li>
+            </ul>
           </div>
         </div>
       </div>
       <div id="exp-ciars" class="row" data-reveal>
         <div class="row-period">July 2022 — May 2024</div>
         <div class="row-main">
-          <a href="https://ciars.ai" class="mono">Ci</a>
+          <a href="https://ciars.ai" target="_blank" rel="noopener" class="mono">Ci</a>
           <div>
-            <h3 class="row-title">Python backend engineer · <a href="https://ciars.ai">CIARS</a></h3>
-            <p class="row-text">Built backend services and analytics for a freight monitoring system, along with ETL pipelines for analytical models. I normalized 100,000 product listings from B2B catalogs to a common schema. When labeled training data was insufficient for OCR, I built a synthetic document generator. In a separate project, I built an ETL pipeline that processed more than 1 TB of text.</p>
+            <h3 class="row-title">Python backend engineer · <a href="https://ciars.ai" target="_blank" rel="noopener">CIARS</a></h3>
+            <p class="row-text row-lead">Built backend services and analytics for a freight monitoring system, along with ETL pipelines for analytical models.</p>
+            <ul class="row-text row-list" role="list">
+              <li>I normalized <b class="fig">100,000</b> product listings from B2B catalogs to a common schema.</li>
+              <li>When labeled training data was insufficient for OCR, I built a synthetic document generator.</li>
+              <li><span class="proof" id="proof-etl">In a separate project, I built an ETL pipeline that processed <b class="fig">more than 1&nbsp;TB</b> of text.</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -338,9 +374,9 @@
       <div class="row" data-reveal>
         <div class="row-period">2024 — 2028</div>
         <div class="row-main">
-          <a href="https://www.fa.ru" class="mono mono-s">Fin</a>
+          <a href="https://www.fa.ru" target="_blank" rel="noopener" class="mono mono-s">Fin</a>
           <div>
-            <h3 class="row-title row-title-b"><a href="https://www.fa.ru">Financial University</a></h3>
+            <h3 class="row-title row-title-b"><a href="https://www.fa.ru" target="_blank" rel="noopener">Financial University</a></h3>
             <p class="row-text">Studying Applied Informatics at the Faculty of Information Technology and Big Data Analysis, with a focus on information systems in economics and finance. I study alongside my work.</p>
           </div>
         </div>
@@ -348,24 +384,34 @@
       <div class="row" data-reveal>
         <div class="row-period">2020 — 2024</div>
         <div class="row-main">
-          <a href="https://kip.fa.ru" class="mono mono-s">CIP</a>
+          <a href="https://kip.fa.ru" target="_blank" rel="noopener" class="mono mono-s">CIP</a>
           <div>
-            <h3 class="row-title row-title-b"><a href="https://kip.fa.ru">College of Informatics and Programming, Financial University</a></h3>
+            <h3 class="row-title row-title-b"><a href="https://kip.fa.ru" target="_blank" rel="noopener">College of Informatics and Programming, Financial University</a></h3>
             <p class="row-text">Studied Programming in Computer Systems and qualified as a software technician. I started using Python during college and took my first engineering job while studying.</p>
           </div>
         </div>
       </div>
-      <a class="resume fx" data-reveal href="https://cv.ferokuk.dev"><span class="resume-t">Full resume</span><span class="resume-u">cv.ferokuk.dev ↗</span></a>
+      <a class="resume fx" data-reveal href="https://cv.ferokuk.dev/en/" target="_blank" rel="noopener"><span class="resume-t">Full resume</span><span class="resume-u">cv.ferokuk.dev ↗</span></a>
     </section>
 
     <section id="contact" class="sec sec-line sec-contact">
       <div class="eyebrow" data-reveal>05 — contact</div>
       <h2 class="h2-big" data-reveal>Open to interesting opportunities</h2>
-      <p class="contact-lead" data-reveal>I'm not actively job hunting, but I'm open to relevant backend opportunities. Based in Moscow; available for remote or hybrid work. Reach me by <a href="mailto:yaroslav@ferokuk.dev">email</a> or on <a href="https://t.me/ferokuk">Telegram</a>.</p>
+      <p class="contact-lead" data-reveal><span data-sum="status">I'm not actively job hunting, but I'm open to relevant backend opportunities.</span> Based in Moscow; available for remote or hybrid work. Reach me by <a href="mailto:yaroslav@ferokuk.dev">email</a> or on <a href="https://t.me/ferokuk" target="_blank" rel="noopener">Telegram</a>.</p>
       <div class="contact-links" data-reveal>
-        <a href="mailto:yaroslav@ferokuk.dev" class="cbtn cbtn-acc">yaroslav@ferokuk.dev →</a>
-        <a href="https://t.me/ferokuk" class="cbtn cbtn-line fx">Telegram @ferokuk ↗</a>
-        <a href="https://github.com/ferokuk" class="cbtn cbtn-line fx">GitHub /ferokuk ↗</a>
+        <span class="cgroup">
+          <a href="mailto:yaroslav@ferokuk.dev" class="cbtn cbtn-acc">yaroslav@ferokuk.dev →</a>
+          <button type="button" class="cbtn-copy" data-copy="yaroslav@ferokuk.dev" data-copy-goal="email_copied" data-said="Email address copied" data-tip="Copy address" data-tip-done="Copied ✓" aria-label="Copy email address"><svg class="i-cp" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="i-ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+        </span>
+        <a href="https://t.me/ferokuk" target="_blank" rel="noopener" class="cbtn cbtn-line fx">Telegram @ferokuk ↗</a>
+        <a href="https://cv.ferokuk.dev/en/" target="_blank" rel="noopener" class="cbtn cbtn-line fx">Resume cv.ferokuk.dev ↗</a>
+        <a href="https://github.com/ferokuk" target="_blank" rel="noopener" class="cbtn cbtn-line fx">GitHub /ferokuk ↗</a>
+        <span class="sr-only" role="status" aria-live="polite" data-copy-status></span>
+      </div>
+      <div class="sum" data-reveal data-sum-box hidden>
+        <button type="button" class="sum-btn" data-sum-btn data-said="Summary copied"><svg class="i-cp" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="i-ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-sum-label>Copy a summary for a colleague</span><span class="sum-done" aria-hidden="true">Copied ✓</span></button>
+        <p class="sum-note">name, results, stack and contacts — one message for Telegram or email</p>
+        <details class="sum-peek"><summary>Preview the text</summary><pre class="sum-pre" data-sum-text></pre></details>
       </div>
     </section>
 
@@ -374,7 +420,7 @@
   <footer class="foot">
     <div class="foot-row">
       <span class="foot-c">© 2026 ferokuk.dev</span>
-      <a href="https://cv.ferokuk.dev">Resume — cv.ferokuk.dev</a>
+      <a href="https://cv.ferokuk.dev/en/" target="_blank" rel="noopener">Resume — cv.ferokuk.dev</a>
       <a href="#top">Back to top ↑</a>
     </div>
     <p class="foot-note">This site uses cookies and Yandex Metrica to collect anonymized visit statistics. By continuing to use the site, you agree to the processing of this data.</p>
